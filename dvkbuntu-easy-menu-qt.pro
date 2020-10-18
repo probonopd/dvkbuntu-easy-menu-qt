@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui svg webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -36,8 +36,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     Images/0-Categorie/calculator.svg \
     Images/0-Categorie/clipboard.svg \
+    Images/0-Categorie/discord.svg \
     Images/0-Categorie/envelope.svg \
     Images/0-Categorie/globe-africa.svg \
+    Images/0-Categorie/music.svg \
     Images/1-NavigateurWeb/arrow-left.svg \
     Images/1-NavigateurWeb/arrow-right.svg \
     Images/1-NavigateurWeb/home.svg \
@@ -59,3 +61,6 @@ DISTFILES += \
     Images/4-Courriel/envelope.svg \
     Images/4-Courriel/print.svg \
     Images/EasyMenu_Icone.svg
+
+RESOURCES += \
+    resource.qrc
