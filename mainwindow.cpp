@@ -130,6 +130,7 @@ void MainWindow::on_Internet_clicked()
 {
     //view->setAttribute(Qt::WA_DeleteOnClose);
     view->load(QUrl("http://google.com/"));
+    view->setWindowState(Qt::WindowMaximized);
     view->show();
     //setCentralWidget(view);
 }
@@ -138,6 +139,7 @@ void MainWindow::on_Music_clicked()
 {
     //music->setAttribute(Qt::WA_DeleteOnClose);
     music->load(QUrl("https://www.jamendo.com/start"));
+    music->setWindowState(Qt::WindowMaximized);
     music->show();
     //setCentralWidget(music);
 }
