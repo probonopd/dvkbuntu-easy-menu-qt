@@ -323,8 +323,8 @@ Accéder
          </property>
          <property name="text">
           <string>
-Venir sur Discord
-pour discuter</string>
+Venir discuter
+sur Discord </string>
          </property>
          <property name="icon">
           <iconset resource="resource.qrc">
@@ -374,8 +374,9 @@ pour discuter</string>
          </property>
          <property name="text">
           <string notr="true">
-Pour Ecouter de la
-musique sur Jamendo</string>
+Ecouter
+de la musique
+sur Jamendo</string>
          </property>
          <property name="icon">
           <iconset resource="resource.qrc">
