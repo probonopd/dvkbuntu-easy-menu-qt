@@ -26,16 +26,16 @@ public:
     QToolButton *Notes;
     QToolButton *Discord;
     QToolButton *Music;
-    QMessageBox  EmailWindow;
-    QMessageBox  NavigateurWeb;
-    QMessageBox  PriseDeNotes;
-
+    QRect rec;
 
 private:
     Ui::MainWindow *ui;
+    QString QCMD;
     QProcess *KCalculatrice = new QProcess;
     QProcess *DiscordLauncher = new QProcess;
-    QWebEngineView *view = new QWebEngineView();
+    QProcess *web = new QProcess;
+    QProcess *office = new QProcess;
+    QProcess *email = new QProcess;
     QWebEngineView *music = new QWebEngineView();
 
 private slots:

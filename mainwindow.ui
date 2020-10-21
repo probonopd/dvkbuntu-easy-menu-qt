@@ -164,8 +164,9 @@ Calculatrice</string>
          </property>
          <property name="text">
           <string>
-Prendre
-des notes</string>
+Utiliser
+une suite
+bureautique</string>
          </property>
          <property name="icon">
           <iconset resource="resource.qrc">

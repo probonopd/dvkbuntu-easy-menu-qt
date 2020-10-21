@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QDesktopWidget>
+#include <iostream>
+#include <string>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Notes->installEventFilter(this);
     ui->Discord->installEventFilter(this);
     ui->Music->installEventFilter(this);
+    music->load(QUrl("https://www.jamendo.com/start"));
 }
 
 MainWindow::~MainWindow()
@@ -116,32 +120,38 @@ void MainWindow::on_Calculatrice_clicked()
 
 void MainWindow::on_Email_clicked()
 {
-    EmailWindow.setText("La fonctionnalité de gestion des Emails n'est pas encore fonctionnelle.");
-    EmailWindow.exec();
+    rec = QApplication::desktop()->screenGeometry();
+    std::string height = std::to_string(rec.height());
+    std::string width = std::to_string(rec.width());
+    std::string cmd = "/usr/bin/thunderbird -foreground -height" + height + "-width" + width + "";
+    QCMD = QString::fromStdString(cmd);
+    email->start(QCMD);
 }
 
 void MainWindow::on_Notes_clicked()
 {
-    PriseDeNotes.setText("La fonctionnalité de prise de notes n'est pas encore fonctionnelle.");
-    PriseDeNotes.exec();
+    rec = QApplication::desktop()->screenGeometry();
+    std::string height = std::to_string(rec.height());
+    std::string width = std::to_string(rec.width());
+    std::string cmd = "/usr/bin/onlyoffice-desktopeditors -foreground -height" + height + "-width" + width + "";
+    QCMD = QString::fromStdString(cmd);
+    office->start(QCMD);
 }
 
 void MainWindow::on_Internet_clicked()
 {
-    //view->setAttribute(Qt::WA_DeleteOnClose);
-    view->load(QUrl("http://google.com/"));
-    view->setWindowState(Qt::WindowMaximized);
-    view->show();
-    //setCentralWidget(view);
+    rec = QApplication::desktop()->screenGeometry();
+    std::string height = std::to_string(rec.height());
+    std::string width = std::to_string(rec.width());
+    std::string cmd = "/usr/bin/firefox -foreground -new-tab file:///home/Accueil_local/index.html -height" + height + "-width" + width + "";
+    QCMD = QString::fromStdString(cmd);
+    web->start(QCMD);
 }
 
 void MainWindow::on_Music_clicked()
 {
-    //music->setAttribute(Qt::WA_DeleteOnClose);
-    music->load(QUrl("https://www.jamendo.com/start"));
     music->setWindowState(Qt::WindowMaximized);
     music->show();
-    //setCentralWidget(music);
 }
 
 void MainWindow::on_Discord_clicked()
