@@ -27,6 +27,15 @@ public:
     QToolButton *Discord;
     QToolButton *Music;
     QRect rec;
+    QFont fontC;
+    QFont fontE;
+    QFont fontI;
+    QFont fontN;
+    QFont fontD;
+    QFont fontM;
+    QSize QS;
+    int fSize;
+    int HEIGHT;
 
 private:
     Ui::MainWindow *ui;
