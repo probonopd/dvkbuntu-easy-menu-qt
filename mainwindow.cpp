@@ -23,16 +23,25 @@ MainWindow::MainWindow(QWidget *parent)
     rec = QApplication::desktop()->screenGeometry();
     HEIGHT = rec.height();
 
+    QS = QSize(200,200);
+    fSize=22;
+
+    if (HEIGHT >= 1440)
+    {
+        QS = QSize(300,300);
+    }
     if (HEIGHT <= 1080)
     {
         int fSize;
         QS = QSize(150,150);
         fSize=12;
-        if (HEIGHT <= 900)
-        {
-            QS = QSize(100,100);
-            fSize=8;
-        }
+    }
+    if (HEIGHT <= 900)
+    {
+    QS = QSize(100,100);
+    fSize=8;
+    }
+
     ui->Calculatrice->setIconSize(QS);
     ui->Email->setIconSize(QS);
     ui->Internet->setIconSize(QS);
@@ -51,7 +60,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Notes->setFont(fontN);
     ui->Discord->setFont(fontD);
     ui->Music->setFont(fontM);
-    }
 
     ui->Calculatrice->installEventFilter(this);
     ui->Email->installEventFilter(this);
@@ -86,7 +94,12 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Calculatrice->setFont(fontC);
         }
         if (watched == ui->Calculatrice && event->type() == QEvent::HoverLeave) {
-            if (HEIGHT>1080)
+            if (HEIGHT >= 1440)
+            {
+                QS = QSize(300,300);
+                fontC.setPointSize(22);
+            }
+            else if (HEIGHT>1080)
             {
                 QS = QSize(200,200);
                 fontC.setPointSize(22);
@@ -121,7 +134,12 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Email->setFont(fontE);
         }
         if (watched == ui->Email && event->type() == QEvent::HoverLeave) {
-            if (HEIGHT>1080)
+            if (HEIGHT >= 1440)
+            {
+                QS = QSize(300,300);
+                fontE.setPointSize(22);
+            }
+            else if (HEIGHT>1080)
             {
                 QS = QSize(200,200);
                 fontE.setPointSize(22);
@@ -156,7 +174,12 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Internet->setFont(fontI);
         }
         if (watched == ui->Internet && event->type() == QEvent::HoverLeave) {
-            if (HEIGHT>1080)
+            if (HEIGHT >= 1440)
+            {
+                QS = QSize(300,300);
+                fontI.setPointSize(22);
+            }
+            else if (HEIGHT>1080)
             {
                 QS = QSize(200,200);
                 fontI.setPointSize(22);
@@ -191,7 +214,12 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Notes->setFont(fontN);
         }
         if (watched == ui->Notes && event->type() == QEvent::HoverLeave) {
-            if (HEIGHT>1080)
+            if (HEIGHT >= 1440)
+            {
+                QS = QSize(300,300);
+                fontN.setPointSize(22);
+            }
+            else if (HEIGHT>1080)
             {
                 QS = QSize(200,200);
                 fontN.setPointSize(22);
@@ -226,7 +254,12 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Discord->setFont(fontD);
         }
         if (watched == ui->Discord && event->type() == QEvent::HoverLeave) {
-            if (HEIGHT>1080)
+            if (HEIGHT >= 1440)
+            {
+                QS = QSize(300,300);
+                fontD.setPointSize(22);
+            }
+            else if (HEIGHT>1080)
             {
                 QS = QSize(200,200);
                 fontD.setPointSize(22);
@@ -261,7 +294,12 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Music->setFont(fontM);
         }
         if (watched == ui->Music && event->type() == QEvent::HoverLeave) {
-            if (HEIGHT>1080)
+            if (HEIGHT >= 1440)
+            {
+                QS = QSize(300,300);
+                fontM.setPointSize(22);
+            }
+            else if (HEIGHT>1080)
             {
                 QS = QSize(200,200);
                 fontM.setPointSize(22);
