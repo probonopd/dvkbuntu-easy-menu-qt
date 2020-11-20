@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    QMainWindow::setWindowIcon(QIcon("Image/EasyMenu_Icone.svg"));
+    QMainWindow::setWindowIcon(QIcon("Images/EasyMenu_Icone.svg"));
 
     ui->setupUi(this);
 
@@ -318,6 +318,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Music->setFont(fontM);
         }
     }
+    return false;
 }
 
 void MainWindow::on_Calculatrice_clicked()
