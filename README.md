@@ -4,7 +4,4 @@
 
 # install 
 
-run:
-
-qmake
-make install
+sudo ./install
