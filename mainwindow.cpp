@@ -4,6 +4,8 @@
 #include <QDesktopWidget>
 #include <iostream>
 #include <string>
+#include <QRect>
+#include <QScreen>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,8 +22,11 @@ MainWindow::MainWindow(QWidget *parent)
     fontD = ui->Discord->font();
     fontM = ui->Music->font();
 
-    rec = QApplication::desktop()->screenGeometry();
-    HEIGHT = rec.height();
+    screens = QGuiApplication::screens();
+    screen = screens.first();
+    screenGeometry = screen->geometry();
+    HEIGHT = screenGeometry.height();
+    //ui->Calculatrice->setText(QString::number(HEIGHT));
 
     QS = QSize(200,200);
     fSize=22;
@@ -29,10 +34,10 @@ MainWindow::MainWindow(QWidget *parent)
     if (HEIGHT >= 1440)
     {
         QS = QSize(300,300);
+        fSize=22;
     }
     if (HEIGHT <= 1080)
     {
-        int fSize;
         QS = QSize(150,150);
         fSize=12;
     }
@@ -68,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Discord->installEventFilter(this);
     ui->Music->installEventFilter(this);
 
-    music->load(QUrl("https://www.jamendo.com/start"));
+    music.load(QUrl("https://www.jamendo.com/start"));
 }
 
 MainWindow::~MainWindow()
@@ -94,22 +99,21 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Calculatrice->setFont(fontC);
         }
         if (watched == ui->Calculatrice && event->type() == QEvent::HoverLeave) {
+            fontC.setPointSize(22);
             if (HEIGHT >= 1440)
             {
                 QS = QSize(300,300);
-                fontC.setPointSize(22);
             }
-            else if (HEIGHT>1080)
+            else if (HEIGHT > 1080)
             {
                 QS = QSize(200,200);
-                fontC.setPointSize(22);
             }
-            else if (HEIGHT <= 1080 && HEIGHT > 900)
+            else if (HEIGHT > 900)
             {
                 QS = QSize(150,150);
                 fontC.setPointSize(12);
             }
-            else if (HEIGHT <= 900)
+            else
             {
                 QS = QSize(100,100);
                 fontC.setPointSize(8);
@@ -134,22 +138,21 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Email->setFont(fontE);
         }
         if (watched == ui->Email && event->type() == QEvent::HoverLeave) {
+            fontE.setPointSize(22);
             if (HEIGHT >= 1440)
             {
                 QS = QSize(300,300);
-                fontE.setPointSize(22);
             }
-            else if (HEIGHT>1080)
+            else if (HEIGHT > 1080)
             {
                 QS = QSize(200,200);
-                fontE.setPointSize(22);
             }
-            else if (HEIGHT <= 1080 && HEIGHT > 900)
+            else if (HEIGHT > 900)
             {
                 QS = QSize(150,150);
                 fontE.setPointSize(12);
             }
-            else if (HEIGHT <= 900)
+            else
             {
                 QS = QSize(100,100);
                 fontE.setPointSize(8);
@@ -174,22 +177,21 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Internet->setFont(fontI);
         }
         if (watched == ui->Internet && event->type() == QEvent::HoverLeave) {
+            fontI.setPointSize(22);
             if (HEIGHT >= 1440)
             {
                 QS = QSize(300,300);
-                fontI.setPointSize(22);
             }
-            else if (HEIGHT>1080)
+            else if (HEIGHT > 1080)
             {
                 QS = QSize(200,200);
-                fontI.setPointSize(22);
             }
-            else if (HEIGHT <= 1080 && HEIGHT > 900)
+            else if (HEIGHT > 900)
             {
                 QS = QSize(150,150);
                 fontI.setPointSize(12);
             }
-            else if (HEIGHT <= 900)
+            else
             {
                 QS = QSize(100,100);
                 fontI.setPointSize(8);
@@ -214,22 +216,21 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Notes->setFont(fontN);
         }
         if (watched == ui->Notes && event->type() == QEvent::HoverLeave) {
+            fontN.setPointSize(22);
             if (HEIGHT >= 1440)
             {
                 QS = QSize(300,300);
-                fontN.setPointSize(22);
             }
-            else if (HEIGHT>1080)
+            else if (HEIGHT > 1080)
             {
                 QS = QSize(200,200);
-                fontN.setPointSize(22);
             }
-            else if (HEIGHT <= 1080 && HEIGHT > 900)
+            else if (HEIGHT > 900)
             {
                 QS = QSize(150,150);
                 fontN.setPointSize(12);
             }
-            else if (HEIGHT <= 900)
+            else
             {
                 QS = QSize(100,100);
                 fontN.setPointSize(8);
@@ -254,22 +255,21 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Discord->setFont(fontD);
         }
         if (watched == ui->Discord && event->type() == QEvent::HoverLeave) {
+            fontD.setPointSize(22);
             if (HEIGHT >= 1440)
             {
                 QS = QSize(300,300);
-                fontD.setPointSize(22);
             }
-            else if (HEIGHT>1080)
+            else if (HEIGHT > 1080)
             {
                 QS = QSize(200,200);
-                fontD.setPointSize(22);
             }
-            else if (HEIGHT <= 1080 && HEIGHT > 900)
+            else if (HEIGHT > 900)
             {
                 QS = QSize(150,150);
                 fontD.setPointSize(12);
             }
-            else if (HEIGHT <= 900)
+            else
             {
                 QS = QSize(100,100);
                 fontD.setPointSize(8);
@@ -294,17 +294,16 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Music->setFont(fontM);
         }
         if (watched == ui->Music && event->type() == QEvent::HoverLeave) {
+            fontM.setPointSize(22);
             if (HEIGHT >= 1440)
             {
                 QS = QSize(300,300);
-                fontM.setPointSize(22);
             }
-            else if (HEIGHT>1080)
+            else if (HEIGHT > 1080)
             {
                 QS = QSize(200,200);
-                fontM.setPointSize(22);
             }
-            else if (HEIGHT <= 1080 && HEIGHT > 900)
+            else if (HEIGHT <= 1080)
             {
                 QS = QSize(150,150);
                 fontM.setPointSize(12);
@@ -328,9 +327,10 @@ void MainWindow::on_Calculatrice_clicked()
 
 void MainWindow::on_Email_clicked()
 {
-    rec = QApplication::desktop()->screenGeometry();
-    std::string height = std::to_string(rec.height());
-    std::string width = std::to_string(rec.width());
+    screen = QGuiApplication::primaryScreen();
+    screenGeometry = screen->geometry();
+    std::string height = std::to_string(screenGeometry.height());
+    std::string width = std::to_string(screenGeometry.width());
     std::string cmd = "/usr/bin/thunderbird -foreground -height" + height + "-width" + width + "";
     QCMD = QString::fromStdString(cmd);
     email->start(QCMD);
@@ -338,9 +338,10 @@ void MainWindow::on_Email_clicked()
 
 void MainWindow::on_Notes_clicked()
 {
-    rec = QApplication::desktop()->screenGeometry();
-    std::string height = std::to_string(rec.height());
-    std::string width = std::to_string(rec.width());
+    screen = QGuiApplication::primaryScreen();
+    screenGeometry = screen->geometry();
+    std::string height = std::to_string(screenGeometry.height());
+    std::string width = std::to_string(screenGeometry.width());
     std::string cmd = "/usr/bin/onlyoffice-desktopeditors -foreground -height" + height + "-width" + width + "";
     QCMD = QString::fromStdString(cmd);
     office->start(QCMD);
@@ -348,9 +349,10 @@ void MainWindow::on_Notes_clicked()
 
 void MainWindow::on_Internet_clicked()
 {
-    rec = QApplication::desktop()->screenGeometry();
-    std::string height = std::to_string(rec.height());
-    std::string width = std::to_string(rec.width());
+    screen = QGuiApplication::primaryScreen();
+    screenGeometry = screen->geometry();
+    std::string height = std::to_string(screenGeometry.height());
+    std::string width = std::to_string(screenGeometry.width());
     std::string cmd = "/usr/bin/firefox -foreground -new-tab file:///home/Accueil_local/index.html -height" + height + "-width" + width + "";
     QCMD = QString::fromStdString(cmd);
     web->start(QCMD);
@@ -358,9 +360,9 @@ void MainWindow::on_Internet_clicked()
 
 void MainWindow::on_Music_clicked()
 {
-    music->setWindowState(Qt::WindowMaximized);
-    music->setWindowTitle("EasyMenu Jamendo");
-    music->show();
+    music.setWindowState(Qt::WindowMaximized);
+    music.setWindowTitle("EasyMenu Jamendo");
+    music.show();
 }
 
 void MainWindow::on_Discord_clicked()

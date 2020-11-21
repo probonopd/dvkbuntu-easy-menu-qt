@@ -8,6 +8,7 @@
 #include <QWidget>
 #include <QMessageBox>
 #include <QWebEngineView>
+#include <QRect>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,7 +27,9 @@ public:
     QToolButton *Notes;
     QToolButton *Discord;
     QToolButton *Music;
-    QRect rec;
+    QList<QScreen*> screens;
+    QScreen *screen;
+    QRect screenGeometry;
     QFont fontC;
     QFont fontE;
     QFont fontI;
@@ -45,7 +48,7 @@ private:
     QProcess *web = new QProcess;
     QProcess *office = new QProcess;
     QProcess *email = new QProcess;
-    QWebEngineView *music = new QWebEngineView();
+    QWebEngineView music;// = new QWebEngineView();
 
 private slots:
     virtual bool eventFilter(QObject* watched, QEvent* event);
