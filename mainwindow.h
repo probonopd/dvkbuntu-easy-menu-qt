@@ -9,6 +9,8 @@
 #include <QMessageBox>
 #include <QWebEngineView>
 #include <QRect>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -39,6 +41,10 @@ public:
     QSize QS;
     int fSize;
     int HEIGHT;
+    QProcess *m_process = new QProcess;
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    QMediaPlayer *player = new QMediaPlayer;
+    QMediaPlaylist *playlist = new QMediaPlaylist;
 
 private:
     Ui::MainWindow *ui;
@@ -49,6 +55,7 @@ private:
     QProcess *office = new QProcess;
     QProcess *email = new QProcess;
     QWebEngineView music;// = new QWebEngineView();
+    bool play = false;
 
 private slots:
     virtual bool eventFilter(QObject* watched, QEvent* event);
@@ -58,5 +65,7 @@ private slots:
     void on_Internet_clicked();
     void on_Music_clicked();
     void on_Discord_clicked();
+
 };
+
 #endif // MAINWINDOW_H

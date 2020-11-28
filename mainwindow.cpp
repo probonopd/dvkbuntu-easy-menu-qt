@@ -85,6 +85,10 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
 {
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Calculatrice && event->type() == QEvent::HoverEnter) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            m_process->start("createWaveFromItem \"Ouvrir la calculatrice.\"");
             if (HEIGHT > 900)
             {
                 QS = QSize(100,100);
@@ -99,6 +103,10 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Calculatrice->setFont(fontC);
         }
         if (watched == ui->Calculatrice && event->type() == QEvent::HoverLeave) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            play=false;
             fontC.setPointSize(22);
             if (HEIGHT >= 1440)
             {
@@ -124,6 +132,10 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Email && event->type() == QEvent::HoverEnter) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            m_process->start("createWaveFromItem \"Ouvrir le client email.\"");
             if (HEIGHT > 900)
             {
                 QS = QSize(100,100);
@@ -138,6 +150,10 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Email->setFont(fontE);
         }
         if (watched == ui->Email && event->type() == QEvent::HoverLeave) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            play=false;
             fontE.setPointSize(22);
             if (HEIGHT >= 1440)
             {
@@ -163,6 +179,11 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Internet && event->type() == QEvent::HoverEnter) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            m_process->start("createWaveFromItem \"Ouvrir le navigateur internet.\"");
+
             if (HEIGHT > 900)
             {
                 QS = QSize(100,100);
@@ -177,6 +198,10 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Internet->setFont(fontI);
         }
         if (watched == ui->Internet && event->type() == QEvent::HoverLeave) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            play=false;
             fontI.setPointSize(22);
             if (HEIGHT >= 1440)
             {
@@ -202,6 +227,10 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Notes && event->type() == QEvent::HoverEnter) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            m_process->start("createWaveFromItem \"Ouvrir la suite bureautique.\"");
             if (HEIGHT > 900)
             {
                 QS = QSize(100,100);
@@ -216,6 +245,10 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Notes->setFont(fontN);
         }
         if (watched == ui->Notes && event->type() == QEvent::HoverLeave) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            play=false;
             fontN.setPointSize(22);
             if (HEIGHT >= 1440)
             {
@@ -241,6 +274,10 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Discord && event->type() == QEvent::HoverEnter) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            m_process->start("createWaveFromItem \"Discuter grâce à discord.\"");
             if (HEIGHT > 900)
             {
                 QS = QSize(100,100);
@@ -255,6 +292,10 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Discord->setFont(fontD);
         }
         if (watched == ui->Discord && event->type() == QEvent::HoverLeave) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            play=false;
             fontD.setPointSize(22);
             if (HEIGHT >= 1440)
             {
@@ -280,6 +321,11 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Music && event->type() == QEvent::HoverEnter) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            m_process->start("createWaveFromItem \"Écouter de la musique avec Jamendo.\"");
+
             if (HEIGHT > 900)
             {
                 QS = QSize(100,100);
@@ -294,6 +340,10 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Music->setFont(fontM);
         }
         if (watched == ui->Music && event->type() == QEvent::HoverLeave) {
+            player->pause();
+            player->stop();
+            m_process->kill();
+            play=false;
             fontM.setPointSize(22);
             if (HEIGHT >= 1440)
             {
@@ -316,6 +366,14 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Music->setIconSize(QS);
             ui->Music->setFont(fontM);
         }
+    }
+    if (!play) {
+        player->pause();
+        player->stop();
+        player->setVolume(50);
+        player->setMedia(QUrl("file:// + env.value(\"HOME\") + \"/.local/share/dvkbuntu/sonEnCours.wav\"\""));
+        player->play();
+        play=true;
     }
     return false;
 }

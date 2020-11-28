@@ -1,4 +1,4 @@
-QT       += core gui svg webenginewidgets
+QT       += core gui svg webenginewidgets multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
