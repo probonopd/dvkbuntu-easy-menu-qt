@@ -85,7 +85,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Calculatrice && event->type() == QEvent::HoverEnter) {
             ui->Calculatrice->setIcon(QIcon(":/Images/0-Categorie/calculator-color.svg"));
-            ui->Calculatrice->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(41, 182, 71);color : #FFFFFF;");
+            ui->Calculatrice->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(41, 182, 71);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
@@ -109,7 +109,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Email && event->type() == QEvent::HoverEnter) {
             ui->Email->setIcon(QIcon(":/Images/0-Categorie/envelope-color.svg"));
-            ui->Email->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(240, 195, 26);color : #FFFFFF;");
+            ui->Email->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(240, 195, 26);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
@@ -133,7 +133,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Internet && event->type() == QEvent::HoverEnter) {
             ui->Internet->setIcon(QIcon(":/Images/0-Categorie/globe-africa-color.svg"));
-            ui->Internet->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(156, 113, 77);color : #FFFFFF;");
+            ui->Internet->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(156, 113, 77);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
@@ -157,7 +157,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Notes && event->type() == QEvent::HoverEnter) {
             ui->Notes->setIcon(QIcon(":/Images/0-Categorie/clipboard-color.svg"));
-            ui->Notes->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(0, 88, 132);color : #FFFFFF;");
+            ui->Notes->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(0, 88, 132);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
@@ -181,7 +181,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Discord && event->type() == QEvent::HoverEnter) {
             ui->Discord->setIcon(QIcon(":/Images/0-Categorie/discord-color.svg"));
-            ui->Discord->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(114, 137, 218);color : #FFFFFF;");
+            ui->Discord->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(114, 137, 218);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
@@ -205,7 +205,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Music && event->type() == QEvent::HoverEnter) {
             ui->Music->setIcon(QIcon(":/Images/0-Categorie/music-color.svg"));
-            ui->Music->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(222, 89, 144);color : #FFFFFF;");
+            ui->Music->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(222, 89, 144);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
