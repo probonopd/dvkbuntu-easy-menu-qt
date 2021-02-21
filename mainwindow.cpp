@@ -26,45 +26,44 @@ MainWindow::MainWindow(QWidget *parent)
     screen = screens.first();
     screenGeometry = screen->geometry();
     HEIGHT = screenGeometry.height();
-    //ui->Calculatrice->setText(QString::number(HEIGHT));
 
-    QS = QSize(200,200);
-    fSize=22;
+    QS1 = QSize((int)(HEIGHT*.3),(int)(HEIGHT*.3));
+    fSize1 = (int)((HEIGHT*.03) / 3);
+    QS2 = QSize((int)(HEIGHT*.05),(int)(HEIGHT*.05));
+    fSize2 = (int)((HEIGHT*.1) / 3);
 
-    if (HEIGHT >= 1440)
-    {
-        QS = QSize(300,300);
-        fSize=22;
-    }
-    if (HEIGHT <= 1080)
-    {
-        QS = QSize(150,150);
-        fSize=12;
-    }
-    if (HEIGHT <= 900)
-    {
-    QS = QSize(100,100);
-    fSize=8;
-    }
+    ui->Calculatrice->setText("Calculatrice");
+    ui->Email->setText("Gestion\nEmail");
+    ui->Internet->setText("Accédez\nà internet");
+    ui->Notes->setText("Texte,\nCalcul ou \nPrésentation");
+    ui->Discord->setText("Nous\nrejoindre\nsur Discord");
+    ui->Music->setText("Ecouter de\nla musique\nsur Jamendo");
 
-    ui->Calculatrice->setIconSize(QS);
-    ui->Email->setIconSize(QS);
-    ui->Internet->setIconSize(QS);
-    ui->Notes->setIconSize(QS);
-    ui->Discord->setIconSize(QS);
-    ui->Music->setIconSize(QS);
-    fontC.setPointSize(fSize);
-    fontE.setPointSize(fSize);
-    fontI.setPointSize(fSize);
-    fontN.setPointSize(fSize);
-    fontD.setPointSize(fSize);
-    fontM.setPointSize(fSize);
+    ui->Calculatrice->setIconSize(QS1);
+    ui->Email->setIconSize(QS1);
+    ui->Internet->setIconSize(QS1);
+    ui->Notes->setIconSize(QS1);
+    ui->Discord->setIconSize(QS1);
+    ui->Music->setIconSize(QS1);
+    fontC.setPointSize(fSize1);
+    fontE.setPointSize(fSize1);
+    fontI.setPointSize(fSize1);
+    fontN.setPointSize(fSize1);
+    fontD.setPointSize(fSize1);
+    fontM.setPointSize(fSize1);
     ui->Calculatrice->setFont(fontC);
     ui->Email->setFont(fontE);
     ui->Internet->setFont(fontI);
     ui->Notes->setFont(fontN);
     ui->Discord->setFont(fontD);
     ui->Music->setFont(fontM);
+
+    ui->Calculatrice->setStyleSheet("background-color: rgb(41, 182, 71);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
+    ui->Email->setStyleSheet("background-color: rgb(240, 195, 26);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
+    ui->Internet->setStyleSheet("background-color: rgb(156, 113, 77);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
+    ui->Notes->setStyleSheet("background-color: rgb(0, 88, 132);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
+    ui->Discord->setStyleSheet("background-color: rgb(114, 137, 218);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
+    ui->Music->setStyleSheet("background-color: rgb(222, 89, 144);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
 
     ui->Calculatrice->installEventFilter(this);
     ui->Email->installEventFilter(this);
@@ -85,285 +84,145 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
 {
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Calculatrice && event->type() == QEvent::HoverEnter) {
+            ui->Calculatrice->setIcon(QIcon(":/Images/0-Categorie/calculator-color.svg"));
+            ui->Calculatrice->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(41, 182, 71);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             m_process->start("createWaveFromItem \"Ouvrir la calculatrice.\"");
-            if (HEIGHT > 900)
-            {
-                QS = QSize(100,100);
-                fontC.setPointSize(30);
-            }
-            else
-            {
-                QS = QSize(80,80);
-                fontC.setPointSize(8);
-            }
-            ui->Calculatrice->setIconSize(QS);
+            ui->Calculatrice->setIconSize(QS2);
+            fontC.setPointSize(fSize2);
             ui->Calculatrice->setFont(fontC);
         }
         if (watched == ui->Calculatrice && event->type() == QEvent::HoverLeave) {
+            ui->Calculatrice->setIcon(QIcon(":/Images/0-Categorie/calculator.svg"));
+            ui->Calculatrice->setStyleSheet("background-color: rgb(41, 182, 71);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             play=false;
-            fontC.setPointSize(22);
-            if (HEIGHT >= 1440)
-            {
-                QS = QSize(300,300);
-            }
-            else if (HEIGHT > 1080)
-            {
-                QS = QSize(200,200);
-            }
-            else if (HEIGHT > 900)
-            {
-                QS = QSize(150,150);
-                fontC.setPointSize(12);
-            }
-            else
-            {
-                QS = QSize(100,100);
-                fontC.setPointSize(8);
-            }
-            ui->Calculatrice->setIconSize(QS);
+            ui->Calculatrice->setIconSize(QS1);
+            fontC.setPointSize(fSize1);
             ui->Calculatrice->setFont(fontC);
         }
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Email && event->type() == QEvent::HoverEnter) {
+            ui->Email->setIcon(QIcon(":/Images/0-Categorie/envelope-color.svg"));
+            ui->Email->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(240, 195, 26);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             m_process->start("createWaveFromItem \"Ouvrir le client email.\"");
-            if (HEIGHT > 900)
-            {
-                QS = QSize(100,100);
-                fontE.setPointSize(30);
-            }
-            else
-            {
-                QS = QSize(80,80);
-                fontE.setPointSize(8);
-            }
-            ui->Email->setIconSize(QS);
+            ui->Email->setIconSize(QS2);
+            fontE.setPointSize(fSize2);
             ui->Email->setFont(fontE);
         }
         if (watched == ui->Email && event->type() == QEvent::HoverLeave) {
+            ui->Email->setIcon(QIcon(":/Images/0-Categorie/envelope.svg"));
+            ui->Email->setStyleSheet("background-color: rgb(240, 195, 26);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             play=false;
-            fontE.setPointSize(22);
-            if (HEIGHT >= 1440)
-            {
-                QS = QSize(300,300);
-            }
-            else if (HEIGHT > 1080)
-            {
-                QS = QSize(200,200);
-            }
-            else if (HEIGHT > 900)
-            {
-                QS = QSize(150,150);
-                fontE.setPointSize(12);
-            }
-            else
-            {
-                QS = QSize(100,100);
-                fontE.setPointSize(8);
-            }
-            ui->Email->setIconSize(QS);
+            ui->Email->setIconSize(QS1);
+            fontE.setPointSize(fSize1);
             ui->Email->setFont(fontE);
         }
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Internet && event->type() == QEvent::HoverEnter) {
+            ui->Internet->setIcon(QIcon(":/Images/0-Categorie/globe-africa-color.svg"));
+            ui->Internet->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(156, 113, 77);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             m_process->start("createWaveFromItem \"Ouvrir le navigateur internet.\"");
-
-            if (HEIGHT > 900)
-            {
-                QS = QSize(100,100);
-                fontI.setPointSize(30);
-            }
-            else
-            {
-                QS = QSize(80,80);
-                fontI.setPointSize(8);
-            }
-            ui->Internet->setIconSize(QS);
+            ui->Internet->setIconSize(QS2);
+            fontI.setPointSize(fSize2);
             ui->Internet->setFont(fontI);
         }
         if (watched == ui->Internet && event->type() == QEvent::HoverLeave) {
+            ui->Internet->setIcon(QIcon(":/Images/0-Categorie/globe-africa.svg"));
+            ui->Internet->setStyleSheet("background-color: rgb(156, 113, 77);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             play=false;
-            fontI.setPointSize(22);
-            if (HEIGHT >= 1440)
-            {
-                QS = QSize(300,300);
-            }
-            else if (HEIGHT > 1080)
-            {
-                QS = QSize(200,200);
-            }
-            else if (HEIGHT > 900)
-            {
-                QS = QSize(150,150);
-                fontI.setPointSize(12);
-            }
-            else
-            {
-                QS = QSize(100,100);
-                fontI.setPointSize(8);
-            }
-            ui->Internet->setIconSize(QS);
+            ui->Internet->setIconSize(QS1);
+            fontI.setPointSize(fSize1);
             ui->Internet->setFont(fontI);
         }
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Notes && event->type() == QEvent::HoverEnter) {
+            ui->Notes->setIcon(QIcon(":/Images/0-Categorie/clipboard-color.svg"));
+            ui->Notes->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(0, 88, 132);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             m_process->start("createWaveFromItem \"Ouvrir la suite bureautique.\"");
-            if (HEIGHT > 900)
-            {
-                QS = QSize(100,100);
-                fontN.setPointSize(30);
-            }
-            else
-            {
-                QS = QSize(80,80);
-                fontN.setPointSize(8);
-            }
-            ui->Notes->setIconSize(QS);
+            ui->Notes->setIconSize(QS2);
+            fontN.setPointSize(fSize2);
             ui->Notes->setFont(fontN);
         }
         if (watched == ui->Notes && event->type() == QEvent::HoverLeave) {
+            ui->Notes->setIcon(QIcon(":/Images/0-Categorie/clipboard.svg"));
+            ui->Notes->setStyleSheet("background-color: rgb(0, 88, 132);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             play=false;
-            fontN.setPointSize(22);
-            if (HEIGHT >= 1440)
-            {
-                QS = QSize(300,300);
-            }
-            else if (HEIGHT > 1080)
-            {
-                QS = QSize(200,200);
-            }
-            else if (HEIGHT > 900)
-            {
-                QS = QSize(150,150);
-                fontN.setPointSize(12);
-            }
-            else
-            {
-                QS = QSize(100,100);
-                fontN.setPointSize(8);
-            }
-            ui->Notes->setIconSize(QS);
+            ui->Notes->setIconSize(QS1);
+            fontN.setPointSize(fSize1);
             ui->Notes->setFont(fontN);
         }
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Discord && event->type() == QEvent::HoverEnter) {
+            ui->Discord->setIcon(QIcon(":/Images/0-Categorie/discord-color.svg"));
+            ui->Discord->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(114, 137, 218);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             m_process->start("createWaveFromItem \"Discuter grâce à discord.\"");
-            if (HEIGHT > 900)
-            {
-                QS = QSize(100,100);
-                fontD.setPointSize(30);
-            }
-            else
-            {
-                QS = QSize(80,80);
-                fontD.setPointSize(8);
-            }
-            ui->Discord->setIconSize(QS);
+            ui->Discord->setIconSize(QS2);
+            fontD.setPointSize(fSize2);
             ui->Discord->setFont(fontD);
         }
         if (watched == ui->Discord && event->type() == QEvent::HoverLeave) {
+            ui->Discord->setIcon(QIcon(":/Images/0-Categorie/discord.svg"));
+            ui->Discord->setStyleSheet("background-color: rgb(114, 137, 218);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             play=false;
-            fontD.setPointSize(22);
-            if (HEIGHT >= 1440)
-            {
-                QS = QSize(300,300);
-            }
-            else if (HEIGHT > 1080)
-            {
-                QS = QSize(200,200);
-            }
-            else if (HEIGHT > 900)
-            {
-                QS = QSize(150,150);
-                fontD.setPointSize(12);
-            }
-            else
-            {
-                QS = QSize(100,100);
-                fontD.setPointSize(8);
-            }
-            ui->Discord->setIconSize(QS);
+            ui->Discord->setIconSize(QS1);
+            fontD.setPointSize(fSize1);
             ui->Discord->setFont(fontD);
         }
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Music && event->type() == QEvent::HoverEnter) {
+            ui->Music->setIcon(QIcon(":/Images/0-Categorie/music-color.svg"));
+            ui->Music->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 40px;border:  16PX solid rgb(222, 89, 144);color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             m_process->start("createWaveFromItem \"Écouter de la musique avec Jamendo.\"");
-
-            if (HEIGHT > 900)
-            {
-                QS = QSize(100,100);
-                fontM.setPointSize(30);
-            }
-            else
-            {
-                QS = QSize(80,80);
-                fontM.setPointSize(8);
-            }
-            ui->Music->setIconSize(QS);
+            ui->Music->setIconSize(QS2);
+            fontM.setPointSize(fSize2);
             ui->Music->setFont(fontM);
         }
         if (watched == ui->Music && event->type() == QEvent::HoverLeave) {
+            ui->Music->setIcon(QIcon(":/Images/0-Categorie/music.svg"));
+            ui->Music->setStyleSheet("background-color: rgb(222, 89, 144);border-radius: 10px;border:  8PX solid red;color : #FFFFFF;");
             player->pause();
             player->stop();
             m_process->kill();
             play=false;
-            fontM.setPointSize(22);
-            if (HEIGHT >= 1440)
-            {
-                QS = QSize(300,300);
-            }
-            else if (HEIGHT > 1080)
-            {
-                QS = QSize(200,200);
-            }
-            else if (HEIGHT <= 1080)
-            {
-                QS = QSize(150,150);
-                fontM.setPointSize(12);
-            }
-            else if (HEIGHT <= 900)
-            {
-                QS = QSize(100,100);
-                fontM.setPointSize(8);
-            }
-            ui->Music->setIconSize(QS);
+            ui->Music->setIconSize(QS1);
+            fontM.setPointSize(fSize1);
             ui->Music->setFont(fontM);
         }
     }

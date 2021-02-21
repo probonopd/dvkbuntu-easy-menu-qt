@@ -40,6 +40,12 @@ DISTFILES += \
     Images/0-Categorie/envelope.svg \
     Images/0-Categorie/globe-africa.svg \
     Images/0-Categorie/music.svg \
+    Images/0-Categorie/calculator-color.svg \
+    Images/0-Categorie/clipboard-color.svg \
+    Images/0-Categorie/discord-color.svg \
+    Images/0-Categorie/envelope-color.svg \
+    Images/0-Categorie/globe-africa-color.svg \
+    Images/0-Categorie/music-color.svg \
     Images/1-NavigateurWeb/arrow-left.svg \
     Images/1-NavigateurWeb/arrow-right.svg \
     Images/1-NavigateurWeb/home.svg \

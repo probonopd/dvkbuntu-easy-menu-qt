@@ -38,8 +38,10 @@ public:
     QFont fontN;
     QFont fontD;
     QFont fontM;
-    QSize QS;
-    int fSize;
+    QSize QS1;
+    int fSize1;
+    QSize QS2;
+    int fSize2;
     int HEIGHT;
     QProcess *m_process = new QProcess;
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();

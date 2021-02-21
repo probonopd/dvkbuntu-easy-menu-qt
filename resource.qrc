@@ -27,5 +27,11 @@
         <file>Images/EasyMenu_Icone.svg</file>
         <file>Images/0-Categorie/music.svg</file>
         <file>Images/0-Categorie/discord.svg</file>
+        <file>Images/0-Categorie/calculator-color.svg</file>
+        <file>Images/0-Categorie/clipboard-color.svg</file>
+        <file>Images/0-Categorie/discord-color.svg</file>
+        <file>Images/0-Categorie/envelope-color.svg</file>
+        <file>Images/0-Categorie/globe-africa-color.svg</file>
+        <file>Images/0-Categorie/music-color.svg</file>
     </qresource>
 </RCC>
