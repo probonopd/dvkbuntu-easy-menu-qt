@@ -58,6 +58,11 @@ private:
     QProcess *email = new QProcess;
     QWebEngineView music;// = new QWebEngineView();
     bool play = false;
+    QString program;
+    QString PIDtxt;
+    QProcess WidFromPid;
+    WId myWinID;
+    int myPid;
 
 private slots:
     virtual bool eventFilter(QObject* watched, QEvent* event);
@@ -67,7 +72,6 @@ private slots:
     void on_Internet_clicked();
     void on_Music_clicked();
     void on_Discord_clicked();
-
 };
 
 #endif // MAINWINDOW_H
