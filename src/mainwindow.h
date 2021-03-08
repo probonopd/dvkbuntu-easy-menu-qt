@@ -38,8 +38,10 @@ public:
     QFont fontN;
     QFont fontD;
     QFont fontM;
-    QSize QS;
-    int fSize;
+    QSize QS1;
+    int fSize1;
+    QSize QS2;
+    int fSize2;
     int HEIGHT;
     QProcess *m_process = new QProcess;
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -56,6 +58,11 @@ private:
     QProcess *email = new QProcess;
     QWebEngineView music;// = new QWebEngineView();
     bool play = false;
+    QString program;
+    QString PIDtxt;
+    QProcess WidFromPid;
+    WId myWinID;
+    int myPid;
 
 private slots:
     virtual bool eventFilter(QObject* watched, QEvent* event);
@@ -65,7 +72,6 @@ private slots:
     void on_Internet_clicked();
     void on_Music_clicked();
     void on_Discord_clicked();
-
 };
 
 #endif // MAINWINDOW_H
