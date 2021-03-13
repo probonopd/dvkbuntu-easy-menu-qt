@@ -63,6 +63,13 @@ private:
     QProcess WidFromPid;
     WId myWinID;
     int myPid;
+    QWindow *ma_fenetre;
+    QWidget *myWidgetKCalc;
+    QWidget *myWidgetemail;
+    QWidget *myWidgetOffice;
+    QWidget *myWidgetweb;
+    QWidget *myWidgetDiscord;
+
 
 private slots:
     virtual bool eventFilter(QObject* watched, QEvent* event);
@@ -72,6 +79,7 @@ private slots:
     void on_Internet_clicked();
     void on_Music_clicked();
     void on_Discord_clicked();
+    static void handleStateChanged(QProcess *procss, QWidget *widget);
 };
 
 #endif // MAINWINDOW_H

@@ -6,6 +6,8 @@
 #include <QScreen>
 #include <QWindow>
 #include <QTextStream>
+#include <iostream>
+#include <unistd.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -252,6 +254,15 @@ uint64_t hexToInt(QString str){
     return n;
 }
 
+void MainWindow::handleStateChanged(QProcess *procss, QWidget *widget)
+{
+    //std::cout << "ça passe par là" << std::endl;
+    if (procss->state() == QProcess::NotRunning)
+    {
+        widget->close();
+    }
+}
+
 void MainWindow::on_Calculatrice_clicked()
 {
     KCalculatrice->start("/usr/bin/kcalc");
@@ -266,9 +277,11 @@ void MainWindow::on_Calculatrice_clicked()
         myWinID = hexToInt(stdout);
     }
     while(not myWinID);
-    QWindow *ma_fenetre = QWindow::fromWinId(myWinID);
-    QWidget *widget = QWidget::createWindowContainer(ma_fenetre);
-    widget->showFullScreen();
+    ma_fenetre = QWindow::fromWinId(myWinID);
+    myWidgetKCalc = QWidget::createWindowContainer(ma_fenetre);
+    myWidgetKCalc->showFullScreen();
+    connect(KCalculatrice, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(KCalculatrice, myWidgetKCalc); });
 }
 
 void MainWindow::on_Email_clicked()
@@ -285,9 +298,11 @@ void MainWindow::on_Email_clicked()
         myWinID = hexToInt(stdout);
     }
     while(not myWinID);
-    QWindow *ma_fenetre = QWindow::fromWinId(myWinID);
-    QWidget *widget = QWidget::createWindowContainer(ma_fenetre);
-    widget->showFullScreen();
+    ma_fenetre = QWindow::fromWinId(myWinID);
+    myWidgetemail = QWidget::createWindowContainer(ma_fenetre);
+    myWidgetemail->showFullScreen();
+    connect(email, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(email, myWidgetemail); });
 }
 
 void MainWindow::on_Notes_clicked()
@@ -304,14 +319,16 @@ void MainWindow::on_Notes_clicked()
         myWinID = hexToInt(stdout);
     }
     while(not myWinID);
-    QWindow *ma_fenetre = QWindow::fromWinId(myWinID);
-    QWidget *widget = QWidget::createWindowContainer(ma_fenetre);
-    widget->showFullScreen();
+    ma_fenetre = QWindow::fromWinId(myWinID);
+    myWidgetOffice = QWidget::createWindowContainer(ma_fenetre);
+    myWidgetOffice->showFullScreen();
+    connect(office, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(office, myWidgetOffice); });
 }
 
 void MainWindow::on_Internet_clicked()
 {
-    web->start("/home/paul/qtcreator_project/sielo-legacy/cmake-build-debug/bin/sielo-browser");
+    web->start("/usr/bin/sielo-browser");
     myPid = web->pid();
     PIDtxt = QString::number(myPid);
     program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
@@ -323,9 +340,11 @@ void MainWindow::on_Internet_clicked()
         myWinID = hexToInt(stdout);
     }
     while(not myWinID);
-    QWindow *ma_fenetre = QWindow::fromWinId(myWinID);
-    QWidget *widget = QWidget::createWindowContainer(ma_fenetre);
-    widget->showFullScreen();
+    ma_fenetre = QWindow::fromWinId(myWinID);
+    myWidgetweb = QWidget::createWindowContainer(ma_fenetre);
+    myWidgetweb->showFullScreen();
+    connect(web, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+    [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(web, myWidgetweb); });
 }
 
 void MainWindow::on_Music_clicked()
@@ -337,6 +356,8 @@ void MainWindow::on_Music_clicked()
 
 void MainWindow::on_Discord_clicked()
 {
+    DiscordLauncher->start("pkill -f \"discord\"");
+    DiscordLauncher->waitForFinished(-1);
     DiscordLauncher->start("/usr/bin/discord");
     myPid = DiscordLauncher->pid();
     PIDtxt = QString::number(myPid);
@@ -349,7 +370,27 @@ void MainWindow::on_Discord_clicked()
         myWinID = hexToInt(stdout);
     }
     while(not myWinID);
-    QWindow *ma_fenetre = QWindow::fromWinId(myWinID);
-    QWidget *widget = QWidget::createWindowContainer(ma_fenetre);
-    widget->showFullScreen();
+    ma_fenetre = QWindow::fromWinId(myWinID);
+    myWidgetDiscord = QWidget::createWindowContainer(ma_fenetre);
+    myWidgetDiscord->showFullScreen();
+    do {
+        WidFromPid.start(program);
+        WidFromPid.waitForFinished(-1);
+        stdout = WidFromPid.readAllStandardOutput();
+        myWinID = hexToInt(stdout);
+    }
+    while(myWinID);
+    myWidgetDiscord->close();
+    do {
+        WidFromPid.start(program);
+        WidFromPid.waitForFinished(-1);
+        stdout = WidFromPid.readAllStandardOutput();
+        myWinID = hexToInt(stdout);
+    }
+    while(not myWinID);
+    ma_fenetre = QWindow::fromWinId(myWinID);
+    myWidgetDiscord = QWidget::createWindowContainer(ma_fenetre);
+    myWidgetDiscord->showFullScreen();
+    connect(DiscordLauncher, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(DiscordLauncher, myWidgetDiscord); });
 }
