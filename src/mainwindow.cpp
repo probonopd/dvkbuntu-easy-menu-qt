@@ -12,6 +12,9 @@
 #include <QTreeWidget>
 #include <iostream>
 #include <unistd.h>
+#include <map>
+
+std::map<std::string, QString> QStringMap;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -238,6 +241,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Music && event->type() == QEvent::HoverEnter) {
+            ui->Music->setText(QStringMap.at("Music"));
             ui->Music->setIcon(QIcon(":/Images/0-Categorie/music-color.svg"));
             ui->Music->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(212, 115, 212);color : white;");
             player->pause();
@@ -249,6 +253,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Music->setFont(fontM);
         }
         if (watched == ui->Music && event->type() == QEvent::HoverLeave) {
+            ui->Music->setText("");
             ui->Music->setIcon(QIcon(":/Images/0-Categorie/music.svg"));
             ui->Music->setStyleSheet("background-color: rgb(212, 115, 212);border-radius: 10px;border:  8PX solid red;color : white;");
             player->pause();
