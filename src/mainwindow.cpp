@@ -1,11 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "controlmenu.h"
+#include "ui_controlmenu.h"
 #include <QDesktopWidget>
 #include <string>
 #include <QRect>
 #include <QScreen>
 #include <QWindow>
 #include <QTextStream>
+#include <QDockWidget>
+#include <QTreeWidget>
 #include <iostream>
 #include <unistd.h>
 
@@ -34,12 +38,26 @@ MainWindow::MainWindow(QWidget *parent)
     QS2 = QSize((int)(HEIGHT*.05),(int)(HEIGHT*.05));
     fSize2 = (int)((HEIGHT*.1) / 3);
 
-    ui->Calculatrice->setText("Calculatrice");
-    ui->Email->setText("Gestion\nEmail");
-    ui->Internet->setText("Accédez\nà internet");
-    ui->Notes->setText("Texte,\nCalcul ou \nPrésentation");
-    ui->Discord->setText("Nous\nrejoindre\nsur Discord");
-    ui->Music->setText("Ecouter de\nla musique\nsur Jamendo");
+    QString calculatriceText = "Calculatrice";
+    QString emailText = "Gestion \ne-mail";
+    QString internetText = "Accédez\nà internet";
+    QString notesText = "Texte,\nCalcul ou \nPrésentation";
+    QString discordText = "Nous\nrejoindre\nsur Discord";
+    QString musicText = "Ecouter de\nla musique\nsur Jamendo";
+
+    QStringMap["Calculatrice"] = calculatriceText;
+    QStringMap["Email"] = emailText;
+    QStringMap["Internet"] = internetText;
+    QStringMap["Notes"] = notesText;
+    QStringMap["Discord"] = discordText;
+    QStringMap["Music"] = musicText;
+
+    ui->Calculatrice->setText("");
+    ui->Email->setText("");
+    ui->Internet->setText("");
+    ui->Notes->setText("");
+    ui->Discord->setText("");
+    ui->Music->setText("");
 
     ui->Calculatrice->setIconSize(QS1);
     ui->Email->setIconSize(QS1);
@@ -61,11 +79,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Music->setFont(fontM);
 
     ui->Calculatrice->setStyleSheet("background-color: rgb(41, 182, 71);border-radius: 10px;border:  8PX solid red;color : white;");
-    ui->Email->setStyleSheet("background-color: rgb(240, 195, 26);border-radius: 10px;border:  8PX solid red;color : white;");
-    ui->Internet->setStyleSheet("background-color: rgb(156, 113, 77);border-radius: 10px;border:  8PX solid red;color : white;");
+    ui->Email->setStyleSheet("background-color: rgb(240, 120, 80);border-radius: 10px;border:  8PX solid red;color : white;");
+    ui->Internet->setStyleSheet("background-color: rgb(88, 70, 55);border-radius: 10px;border:  8PX solid red;color : white;");
     ui->Notes->setStyleSheet("background-color: rgb(0, 88, 132);border-radius: 10px;border:  8PX solid red;color : white;");
     ui->Discord->setStyleSheet("background-color: rgb(114, 137, 218);border-radius: 10px;border:  8PX solid red;color : white;");
-    ui->Music->setStyleSheet("background-color: rgb(222, 89, 144);border-radius: 10px;border:  8PX solid red;color : white;");
+    ui->Music->setStyleSheet("background-color: rgb(212, 115, 212);border-radius: 10px;border:  8PX solid red;color : white;");
 
     ui->Calculatrice->installEventFilter(this);
     ui->Email->installEventFilter(this);
@@ -73,6 +91,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Notes->installEventFilter(this);
     ui->Discord->installEventFilter(this);
     ui->Music->installEventFilter(this);
+
+    //QGridLayout *layout = new QGridLayout(this);
+    //ControlMenu *controlmenu = new ControlMenu(this);
+    //layout->addWidget(controlmenu,0,0);
 
     music.load(QUrl("https://www.jamendo.com/start"));
 }
@@ -86,6 +108,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
 {
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Calculatrice && event->type() == QEvent::HoverEnter) {
+            ui->Calculatrice->setText(QStringMap.at("Calculatrice"));
             ui->Calculatrice->setIcon(QIcon(":/Images/0-Categorie/calculator-color.svg"));
             ui->Calculatrice->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(41, 182, 71);color : white;");
             player->pause();
@@ -97,6 +120,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Calculatrice->setFont(fontC);
         }
         if (watched == ui->Calculatrice && event->type() == QEvent::HoverLeave) {
+            ui->Calculatrice->setText("");
             ui->Calculatrice->setIcon(QIcon(":/Images/0-Categorie/calculator.svg"));
             ui->Calculatrice->setStyleSheet("background-color: rgb(41, 182, 71);border-radius: 10px;border:  8PX solid red;color : white;");
             player->pause();
@@ -110,8 +134,9 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Email && event->type() == QEvent::HoverEnter) {
+            ui->Email->setText(QStringMap.at("Email"));
             ui->Email->setIcon(QIcon(":/Images/0-Categorie/envelope-color.svg"));
-            ui->Email->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(240, 195, 26);color : white;");
+            ui->Email->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(240, 120, 80);color : white;");
             player->pause();
             player->stop();
             m_process->kill();
@@ -121,8 +146,9 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Email->setFont(fontE);
         }
         if (watched == ui->Email && event->type() == QEvent::HoverLeave) {
+            ui->Email->setText("");
             ui->Email->setIcon(QIcon(":/Images/0-Categorie/envelope.svg"));
-            ui->Email->setStyleSheet("background-color: rgb(240, 195, 26);border-radius: 10px;border:  8PX solid red;color : white;");
+            ui->Email->setStyleSheet("background-color: rgb(240, 120, 80);border-radius: 10px;border:  8PX solid red;color : white;");
             player->pause();
             player->stop();
             m_process->kill();
@@ -134,8 +160,9 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Internet && event->type() == QEvent::HoverEnter) {
+            ui->Internet->setText(QStringMap.at("Internet"));
             ui->Internet->setIcon(QIcon(":/Images/0-Categorie/globe-africa-color.svg"));
-            ui->Internet->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(156, 113, 77);color : white;");
+            ui->Internet->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(88, 70, 55);color : white;");
             player->pause();
             player->stop();
             m_process->kill();
@@ -145,8 +172,9 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Internet->setFont(fontI);
         }
         if (watched == ui->Internet && event->type() == QEvent::HoverLeave) {
+            ui->Internet->setText("");
             ui->Internet->setIcon(QIcon(":/Images/0-Categorie/globe-africa.svg"));
-            ui->Internet->setStyleSheet("background-color: rgb(156, 113, 77);border-radius: 10px;border:  8PX solid red;color : white;");
+            ui->Internet->setStyleSheet("background-color: rgb(88, 70, 55);border-radius: 10px;border:  8PX solid red;color : white;");
             player->pause();
             player->stop();
             m_process->kill();
@@ -158,6 +186,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Notes && event->type() == QEvent::HoverEnter) {
+            ui->Notes->setText(QStringMap.at("Notes"));
             ui->Notes->setIcon(QIcon(":/Images/0-Categorie/clipboard-color.svg"));
             ui->Notes->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(0, 88, 132);color : white;");
             player->pause();
@@ -169,6 +198,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Notes->setFont(fontN);
         }
         if (watched == ui->Notes && event->type() == QEvent::HoverLeave) {
+            ui->Notes->setText("");
             ui->Notes->setIcon(QIcon(":/Images/0-Categorie/clipboard.svg"));
             ui->Notes->setStyleSheet("background-color: rgb(0, 88, 132);border-radius: 10px;border:  8PX solid red;color : white;");
             player->pause();
@@ -182,6 +212,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     }
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Discord && event->type() == QEvent::HoverEnter) {
+            ui->Discord->setText(QStringMap.at("Discord"));
             ui->Discord->setIcon(QIcon(":/Images/0-Categorie/discord-color.svg"));
             ui->Discord->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(114, 137, 218);color : white;");
             player->pause();
@@ -193,6 +224,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
             ui->Discord->setFont(fontD);
         }
         if (watched == ui->Discord && event->type() == QEvent::HoverLeave) {
+            ui->Discord->setText("");
             ui->Discord->setIcon(QIcon(":/Images/0-Categorie/discord.svg"));
             ui->Discord->setStyleSheet("background-color: rgb(114, 137, 218);border-radius: 10px;border:  8PX solid red;color : white;");
             player->pause();
@@ -207,7 +239,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
     if (event->type() != QEvent::WindowDeactivate) {
         if (watched == ui->Music && event->type() == QEvent::HoverEnter) {
             ui->Music->setIcon(QIcon(":/Images/0-Categorie/music-color.svg"));
-            ui->Music->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(222, 89, 144);color : white;");
+            ui->Music->setStyleSheet("background-color: rgb(0, 0, 0);border-radius: 10px;border:  16PX solid rgb(212, 115, 212);color : white;");
             player->pause();
             player->stop();
             m_process->kill();
@@ -218,7 +250,7 @@ bool MainWindow::eventFilter(QObject* watched, QEvent* event)
         }
         if (watched == ui->Music && event->type() == QEvent::HoverLeave) {
             ui->Music->setIcon(QIcon(":/Images/0-Categorie/music.svg"));
-            ui->Music->setStyleSheet("background-color: rgb(222, 89, 144);border-radius: 10px;border:  8PX solid red;color : white;");
+            ui->Music->setStyleSheet("background-color: rgb(212, 115, 212);border-radius: 10px;border:  8PX solid red;color : white;");
             player->pause();
             player->stop();
             m_process->kill();
@@ -286,6 +318,7 @@ void MainWindow::on_Calculatrice_clicked()
 
 void MainWindow::on_Email_clicked()
 {
+    email->kill();
     email->start("/usr/bin/trojita");
     myPid = email->pid();
     PIDtxt = QString::number(myPid);
@@ -356,6 +389,7 @@ void MainWindow::on_Music_clicked()
 
 void MainWindow::on_Discord_clicked()
 {
+    DiscordLauncher->kill();
     DiscordLauncher->start("pkill -f \"discord\"");
     DiscordLauncher->waitForFinished(-1);
     DiscordLauncher->start("/usr/bin/discord");

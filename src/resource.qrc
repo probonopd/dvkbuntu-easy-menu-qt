@@ -10,6 +10,7 @@
         <file>../Images/1-NavigateurWeb/print.svg</file>
         <file>../Images/1-NavigateurWeb/star.svg</file>
         <file>../Images/1-NavigateurWeb/sync-alt.svg</file>
+        <file>../Images/1-NavigateurWeb/close-alt.svg</file>
         <file>../Images/2-Calculatrice/cogs.svg</file>
         <file>../Images/2-Calculatrice/euro-sign.svg</file>
         <file>../Images/3-PriseDeNotes/copy.svg</file>
@@ -33,5 +34,6 @@
         <file>../Images/0-Categorie/envelope-color.svg</file>
         <file>../Images/0-Categorie/globe-africa-color.svg</file>
         <file>../Images/0-Categorie/music-color.svg</file>
+        <file>../Images/1-NavigateurWeb/close-alt.svg</file>
     </qresource>
 </RCC>

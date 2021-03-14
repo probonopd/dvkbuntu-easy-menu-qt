@@ -906,9 +906,9 @@ Présentation</string>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>222</red>
-               <green>89</green>
-               <blue>144</blue>
+               <red>212</red>
+               <green>115</green>
+               <blue>212</blue>
               </color>
              </brush>
             </colorrole>
@@ -933,18 +933,18 @@ Présentation</string>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>222</red>
-               <green>89</green>
-               <blue>144</blue>
+               <red>212</red>
+               <green>115</green>
+               <blue>212</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>222</red>
-               <green>89</green>
-               <blue>144</blue>
+               <red>212</red>
+               <green>115</green>
+               <blue>212</blue>
               </color>
              </brush>
             </colorrole>
@@ -980,9 +980,9 @@ Présentation</string>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>222</red>
-               <green>89</green>
-               <blue>144</blue>
+               <red>212</red>
+               <green>115</green>
+               <blue>212</blue>
               </color>
              </brush>
             </colorrole>
@@ -1007,18 +1007,18 @@ Présentation</string>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>222</red>
-               <green>89</green>
-               <blue>144</blue>
+               <red>212</red>
+               <green>115</green>
+               <blue>212</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>222</red>
-               <green>89</green>
-               <blue>144</blue>
+               <red>212</red>
+               <green>115</green>
+               <blue>212</blue>
               </color>
              </brush>
             </colorrole>
@@ -1054,9 +1054,9 @@ Présentation</string>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>222</red>
-               <green>89</green>
-               <blue>144</blue>
+               <red>212</red>
+               <green>115</green>
+               <blue>212</blue>
               </color>
              </brush>
             </colorrole>
@@ -1081,18 +1081,18 @@ Présentation</string>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>222</red>
-               <green>89</green>
-               <blue>144</blue>
+               <red>212</red>
+               <green>115</green>
+               <blue>212</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>222</red>
-               <green>89</green>
-               <blue>144</blue>
+               <red>212</red>
+               <green>115</green>
+               <blue>212</blue>
               </color>
              </brush>
             </colorrole>
@@ -1126,7 +1126,7 @@ Présentation</string>
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(222, 89, 144);
+          <string notr="true">background-color: rgb(212, 115, 212);
 border-radius: 20px;
 border:  8PX solid red;
 QLabel { color : white; }</string>
@@ -1188,8 +1188,8 @@ sur Jamendo</string>
              <brush brushstyle="SolidPattern">
               <color alpha="255">
                <red>240</red>
-               <green>195</green>
-               <blue>26</blue>
+               <green>120</green>
+               <blue>80</blue>
               </color>
              </brush>
             </colorrole>
@@ -1215,8 +1215,8 @@ sur Jamendo</string>
              <brush brushstyle="SolidPattern">
               <color alpha="255">
                <red>240</red>
-               <green>195</green>
-               <blue>26</blue>
+               <green>120</green>
+               <blue>80</blue>
               </color>
              </brush>
             </colorrole>
@@ -1224,8 +1224,8 @@ sur Jamendo</string>
              <brush brushstyle="SolidPattern">
               <color alpha="255">
                <red>240</red>
-               <green>195</green>
-               <blue>26</blue>
+               <green>120</green>
+               <blue>80</blue>
               </color>
              </brush>
             </colorrole>
@@ -1262,8 +1262,8 @@ sur Jamendo</string>
              <brush brushstyle="SolidPattern">
               <color alpha="255">
                <red>240</red>
-               <green>195</green>
-               <blue>26</blue>
+               <green>120</green>
+               <blue>80</blue>
               </color>
              </brush>
             </colorrole>
@@ -1289,8 +1289,8 @@ sur Jamendo</string>
              <brush brushstyle="SolidPattern">
               <color alpha="255">
                <red>240</red>
-               <green>195</green>
-               <blue>26</blue>
+               <green>120</green>
+               <blue>80</blue>
               </color>
              </brush>
             </colorrole>
@@ -1298,8 +1298,8 @@ sur Jamendo</string>
              <brush brushstyle="SolidPattern">
               <color alpha="255">
                <red>240</red>
-               <green>195</green>
-               <blue>26</blue>
+               <green>120</green>
+               <blue>80</blue>
               </color>
              </brush>
             </colorrole>
@@ -1336,8 +1336,8 @@ sur Jamendo</string>
              <brush brushstyle="SolidPattern">
               <color alpha="255">
                <red>240</red>
-               <green>195</green>
-               <blue>26</blue>
+               <green>120</green>
+               <blue>80</blue>
               </color>
              </brush>
             </colorrole>
@@ -1363,8 +1363,8 @@ sur Jamendo</string>
              <brush brushstyle="SolidPattern">
               <color alpha="255">
                <red>240</red>
-               <green>195</green>
-               <blue>26</blue>
+               <green>120</green>
+               <blue>80</blue>
               </color>
              </brush>
             </colorrole>
@@ -1372,8 +1372,8 @@ sur Jamendo</string>
              <brush brushstyle="SolidPattern">
               <color alpha="255">
                <red>240</red>
-               <green>195</green>
-               <blue>26</blue>
+               <green>120</green>
+               <blue>80</blue>
               </color>
              </brush>
             </colorrole>
@@ -1407,7 +1407,7 @@ sur Jamendo</string>
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(240, 195, 26);
+          <string notr="true">background-color: rgb(240, 120, 80);
 border-radius: 20px;
 border:  8PX solid red;
 QLabel { color : white; }</string>
@@ -1470,9 +1470,9 @@ Email</string>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>156</red>
-               <green>113</green>
-               <blue>77</blue>
+               <red>88</red>
+               <green>70</green>
+               <blue>55</blue>
               </color>
              </brush>
             </colorrole>
@@ -1497,18 +1497,18 @@ Email</string>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>156</red>
-               <green>113</green>
-               <blue>77</blue>
+               <red>88</red>
+               <green>70</green>
+               <blue>55</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>156</red>
-               <green>113</green>
-               <blue>77</blue>
+               <red>88</red>
+               <green>70</green>
+               <blue>55</blue>
               </color>
              </brush>
             </colorrole>
@@ -1544,9 +1544,9 @@ Email</string>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>156</red>
-               <green>113</green>
-               <blue>77</blue>
+               <red>88</red>
+               <green>70</green>
+               <blue>55</blue>
               </color>
              </brush>
             </colorrole>
@@ -1571,18 +1571,18 @@ Email</string>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>156</red>
-               <green>113</green>
-               <blue>77</blue>
+               <red>88</red>
+               <green>70</green>
+               <blue>55</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>156</red>
-               <green>113</green>
-               <blue>77</blue>
+               <red>88</red>
+               <green>70</green>
+               <blue>55</blue>
               </color>
              </brush>
             </colorrole>
@@ -1618,9 +1618,9 @@ Email</string>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>156</red>
-               <green>113</green>
-               <blue>77</blue>
+               <red>88</red>
+               <green>70</green>
+               <blue>55</blue>
               </color>
              </brush>
             </colorrole>
@@ -1645,18 +1645,18 @@ Email</string>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>156</red>
-               <green>113</green>
-               <blue>77</blue>
+               <red>88</red>
+               <green>70</green>
+               <blue>55</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>156</red>
-               <green>113</green>
-               <blue>77</blue>
+               <red>88</red>
+               <green>70</green>
+               <blue>55</blue>
               </color>
              </brush>
             </colorrole>
@@ -1690,7 +1690,7 @@ Email</string>
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(156, 113, 77);
+          <string notr="true">background-color: rgb(88, 70, 55);
 border-radius: 20px;
 border:  8PX solid red;
 QLabel { color : white; }</string>
@@ -2297,7 +2297,7 @@ Calculatrice</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>39</height>
+     <height>47</height>
     </rect>
    </property>
   </widget>
