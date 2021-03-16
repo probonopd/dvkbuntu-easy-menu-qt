@@ -11,6 +11,8 @@
 #include <QRect>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
+#include <QDesktopWidget>
+#include "controlmenu.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -50,13 +52,12 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QString QCMD;
     QProcess *KCalculatrice = new QProcess;
     QProcess *DiscordLauncher = new QProcess;
     QProcess *web = new QProcess;
     QProcess *office = new QProcess;
     QProcess *email = new QProcess;
-    QWebEngineView music;// = new QWebEngineView();
+    QWebEngineView *music = new QWebEngineView();
     bool play = false;
     QString program;
     QString PIDtxt;
@@ -69,6 +70,9 @@ private:
     QWidget *myWidgetOffice;
     QWidget *myWidgetweb;
     QWidget *myWidgetDiscord;
+    ControlMenu* menu;
+    QLayout *myLayout;
+    QWidget *test;
 
 
 private slots:
@@ -79,7 +83,7 @@ private slots:
     void on_Internet_clicked();
     void on_Music_clicked();
     void on_Discord_clicked();
-    static void handleStateChanged(QProcess *procss, QWidget *widget);
+    static void handleStateChanged(QProcess *procss, QWidget *widget, QWidget *killtest);
 };
 
 #endif // MAINWINDOW_H

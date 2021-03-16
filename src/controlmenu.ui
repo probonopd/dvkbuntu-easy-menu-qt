@@ -6,56 +6,54 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>739</width>
+    <height>1149</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
+  <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>10</y>
-     <width>391</width>
-     <height>281</height>
+     <x>20</x>
+     <y>20</y>
+     <width>708</width>
+     <height>1121</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QToolButton" name="Fermeture">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="4" column="2">
+     <widget class="QToolButton" name="Options">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
       <property name="text">
        <string>...</string>
       </property>
       <property name="icon">
        <iconset resource="resource.qrc">
-        <normaloff>:/Images/1-NavigateurWeb/close-alt.svg</normaloff>:/Images/1-NavigateurWeb/close-alt.svg</iconset>
+        <normaloff>:/Images/2-Calculatrice/cogs.svg</normaloff>:/Images/2-Calculatrice/cogs.svg</iconset>
       </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="Horlorge">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
+      <property name="iconSize">
        <size>
-        <width>20</width>
-        <height>40</height>
+        <width>180</width>
+        <height>180</height>
        </size>
       </property>
-     </spacer>
+     </widget>
     </item>
-    <item>
+    <item row="2" column="2">
      <widget class="QToolButton" name="Home">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
       <property name="text">
        <string>...</string>
       </property>
@@ -63,16 +61,80 @@
        <iconset resource="resource.qrc">
         <normaloff>:/Images/1-NavigateurWeb/home.svg</normaloff>:/Images/1-NavigateurWeb/home.svg</iconset>
       </property>
+      <property name="iconSize">
+       <size>
+        <width>180</width>
+        <height>180</height>
+       </size>
+      </property>
      </widget>
     </item>
-    <item>
-     <widget class="QToolButton" name="Options">
+    <item row="3" column="2">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>200</width>
+        <height>800</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="Horlorge">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>22</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QToolButton" name="Fermeture">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="text">
        <string>...</string>
       </property>
       <property name="icon">
        <iconset resource="resource.qrc">
-        <normaloff>:/Images/2-Calculatrice/cogs.svg</normaloff>:/Images/2-Calculatrice/cogs.svg</iconset>
+        <normaloff>:/Images/1-NavigateurWeb/close-alt.svg</normaloff>:/Images/1-NavigateurWeb/close-alt.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>180</width>
+        <height>180</height>
+       </size>
       </property>
      </widget>
     </item>

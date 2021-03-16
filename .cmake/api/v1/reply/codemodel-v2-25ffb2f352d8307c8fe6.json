@@ -1,0 +1,68 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "dvkbuntu-easy-menu-qt",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "dvkbuntu-easy-menu-qt::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dvkbuntu-easy-menu-qt-Debug-98c0fbc449188aa64ea3.json",
+					"name" : "dvkbuntu-easy-menu-qt",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "dvkbuntu-easy-menu-qt_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dvkbuntu-easy-menu-qt_autogen-Debug-eae2a4e6e87324c8f50b.json",
+					"name" : "dvkbuntu-easy-menu-qt_autogen",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/paul/qtcreator_project/dvkbuntu-easy-menu-qt",
+		"source" : "/home/paul/qtcreator_project/dvkbuntu-easy-menu-qt"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

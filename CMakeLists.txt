@@ -29,6 +29,9 @@ set(PROJECT_SOURCES
         src/mainwindow.cpp
         src/mainwindow.h
         src/mainwindow.ui
+        src/controlmenu.cpp
+        src/controlmenu.h
+        src/controlmenu.ui
         src/resource.qrc
 )
 

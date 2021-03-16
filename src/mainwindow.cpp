@@ -23,6 +23,16 @@ MainWindow::MainWindow(QWidget *parent)
     QMainWindow::setWindowIcon(QIcon("Images/EasyMenu_Icone.svg"));
 
     ui->setupUi(this);
+    menu = new ControlMenu();
+    menu->setMaximumWidth(700);
+
+    /**test = new QWidget;
+    myLayout = new QHBoxLayout(test);
+    myLayout->addWidget();
+    menu->setMaximumWidth(700);
+    myLayout->addWidget(menu);**/
+
+    layout()->addWidget(menu);
 
     fontC = ui->Calculatrice->font();
     fontE = ui->Email->font();
@@ -95,11 +105,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Discord->installEventFilter(this);
     ui->Music->installEventFilter(this);
 
-    //QGridLayout *layout = new QGridLayout(this);
-    //ControlMenu *controlmenu = new ControlMenu(this);
-    //layout->addWidget(controlmenu,0,0);
-
-    music.load(QUrl("https://www.jamendo.com/start"));
+    music->load(QUrl("https://www.jamendo.com/start"));
 }
 
 MainWindow::~MainWindow()
@@ -291,18 +297,19 @@ uint64_t hexToInt(QString str){
     return n;
 }
 
-void MainWindow::handleStateChanged(QProcess *procss, QWidget *widget)
+void MainWindow::handleStateChanged(QProcess *procss, QWidget *widget, QWidget *testkill)
 {
     //std::cout << "ça passe par là" << std::endl;
     if (procss->state() == QProcess::NotRunning)
     {
         widget->close();
+        testkill->close();
     }
 }
 
 void MainWindow::on_Calculatrice_clicked()
 {
-    KCalculatrice->start("/usr/bin/kcalc");
+    KCalculatrice->start("env QT_SCALE_FACTOR=3 /usr/bin/kcalc");
     myPid = KCalculatrice->pid();
     PIDtxt = QString::number(myPid);
     program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
@@ -316,14 +323,21 @@ void MainWindow::on_Calculatrice_clicked()
     while(not myWinID);
     ma_fenetre = QWindow::fromWinId(myWinID);
     myWidgetKCalc = QWidget::createWindowContainer(ma_fenetre);
-    myWidgetKCalc->showFullScreen();
+    test = new QWidget;
+    myLayout = new QHBoxLayout(test);
+    myLayout->addWidget(myWidgetKCalc);
+    menu->setMaximumWidth(700);
+    myLayout->addWidget(menu);
+    test->showFullScreen();
     connect(KCalculatrice, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(KCalculatrice, myWidgetKCalc); });
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(KCalculatrice, myWidgetKCalc, test); });
 }
 
 void MainWindow::on_Email_clicked()
 {
     email->kill();
+    email->start("pkill -f \"trojita\"");
+    email->waitForFinished(-1);
     email->start("/usr/bin/trojita");
     myPid = email->pid();
     PIDtxt = QString::number(myPid);
@@ -338,9 +352,14 @@ void MainWindow::on_Email_clicked()
     while(not myWinID);
     ma_fenetre = QWindow::fromWinId(myWinID);
     myWidgetemail = QWidget::createWindowContainer(ma_fenetre);
-    myWidgetemail->showFullScreen();
+    test = new QWidget;
+    myLayout = new QHBoxLayout(test);
+    myLayout->addWidget(myWidgetemail);
+    menu->setMaximumWidth(700);
+    myLayout->addWidget(menu);
+    test->showFullScreen();
     connect(email, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(email, myWidgetemail); });
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(email, myWidgetemail, test); });
 }
 
 void MainWindow::on_Notes_clicked()
@@ -359,9 +378,14 @@ void MainWindow::on_Notes_clicked()
     while(not myWinID);
     ma_fenetre = QWindow::fromWinId(myWinID);
     myWidgetOffice = QWidget::createWindowContainer(ma_fenetre);
-    myWidgetOffice->showFullScreen();
+    test = new QWidget;
+    myLayout = new QHBoxLayout(test);
+    myLayout->addWidget(myWidgetOffice);
+    menu->setMaximumWidth(700);
+    myLayout->addWidget(menu);
+    test->showFullScreen();
     connect(office, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(office, myWidgetOffice); });
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(office, myWidgetOffice, test); });
 }
 
 void MainWindow::on_Internet_clicked()
@@ -380,16 +404,25 @@ void MainWindow::on_Internet_clicked()
     while(not myWinID);
     ma_fenetre = QWindow::fromWinId(myWinID);
     myWidgetweb = QWidget::createWindowContainer(ma_fenetre);
-    myWidgetweb->showFullScreen();
+    test = new QWidget;
+    myLayout = new QHBoxLayout(test);
+    myLayout->addWidget(myWidgetweb);
+    menu->setMaximumWidth(700);
+    myLayout->addWidget(menu);
+    test->showFullScreen();
     connect(web, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-    [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(web, myWidgetweb); });
+    [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(web, myWidgetweb, test); });
 }
 
 void MainWindow::on_Music_clicked()
 {
-    music.setWindowState(Qt::WindowMaximized);
-    music.setWindowTitle("EasyMenu Jamendo");
-    music.showFullScreen();
+    music->setZoomFactor(3);
+    test = new QWidget;
+    myLayout = new QHBoxLayout(test);
+    myLayout->addWidget(music);
+    menu->setMaximumWidth(700);
+    myLayout->addWidget(menu);
+    test->showFullScreen();
 }
 
 void MainWindow::on_Discord_clicked()
@@ -429,7 +462,12 @@ void MainWindow::on_Discord_clicked()
     while(not myWinID);
     ma_fenetre = QWindow::fromWinId(myWinID);
     myWidgetDiscord = QWidget::createWindowContainer(ma_fenetre);
-    myWidgetDiscord->showFullScreen();
+    test = new QWidget;
+    myLayout = new QHBoxLayout(test);
+    myLayout->addWidget(myWidgetDiscord);
+    menu->setMaximumWidth(700);
+    myLayout->addWidget(menu);
+    test->showFullScreen();
     connect(DiscordLauncher, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(DiscordLauncher, myWidgetDiscord); });
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(DiscordLauncher, myWidgetDiscord, test); });
 }

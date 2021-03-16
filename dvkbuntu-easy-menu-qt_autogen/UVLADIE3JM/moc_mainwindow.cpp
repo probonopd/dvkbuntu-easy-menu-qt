@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[17];
-    char stringdata0[212];
+    QByteArrayData data[18];
+    char stringdata0[221];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -47,7 +47,8 @@ QT_MOC_LITERAL(12, 160, 18), // "handleStateChanged"
 QT_MOC_LITERAL(13, 179, 9), // "QProcess*"
 QT_MOC_LITERAL(14, 189, 6), // "procss"
 QT_MOC_LITERAL(15, 196, 8), // "QWidget*"
-QT_MOC_LITERAL(16, 205, 6) // "widget"
+QT_MOC_LITERAL(16, 205, 6), // "widget"
+QT_MOC_LITERAL(17, 212, 8) // "killtest"
 
     },
     "MainWindow\0eventFilter\0\0watched\0QEvent*\0"
@@ -55,7 +56,8 @@ QT_MOC_LITERAL(16, 205, 6) // "widget"
     "on_Email_clicked\0on_Notes_clicked\0"
     "on_Internet_clicked\0on_Music_clicked\0"
     "on_Discord_clicked\0handleStateChanged\0"
-    "QProcess*\0procss\0QWidget*\0widget"
+    "QProcess*\0procss\0QWidget*\0widget\0"
+    "killtest"
 };
 #undef QT_MOC_LITERAL
 
@@ -80,7 +82,7 @@ static const uint qt_meta_data_MainWindow[] = {
        9,    0,   62,    2, 0x08 /* Private */,
       10,    0,   63,    2, 0x08 /* Private */,
       11,    0,   64,    2, 0x08 /* Private */,
-      12,    2,   65,    2, 0x08 /* Private */,
+      12,    3,   65,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Bool, QMetaType::QObjectStar, 0x80000000 | 4,    3,    5,
@@ -90,7 +92,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 13, 0x80000000 | 15,   14,   16,
+    QMetaType::Void, 0x80000000 | 13, 0x80000000 | 15, 0x80000000 | 15,   14,   16,   17,
 
        0        // eod
 };
@@ -109,7 +111,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->on_Internet_clicked(); break;
         case 5: _t->on_Music_clicked(); break;
         case 6: _t->on_Discord_clicked(); break;
-        case 7: _t->handleStateChanged((*reinterpret_cast< QProcess*(*)>(_a[1])),(*reinterpret_cast< QWidget*(*)>(_a[2]))); break;
+        case 7: _t->handleStateChanged((*reinterpret_cast< QProcess*(*)>(_a[1])),(*reinterpret_cast< QWidget*(*)>(_a[2])),(*reinterpret_cast< QWidget*(*)>(_a[3]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -120,6 +122,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QProcess* >(); break;
+            case 2:
             case 1:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QWidget* >(); break;
             }
