@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "controlmenu.h"
 #include "ui_controlmenu.h"
+#include "controlmenumain.h"
+#include "ui_controlmenumain.h"
 #include <QDesktopWidget>
 #include <string>
 #include <QRect>
@@ -10,8 +12,6 @@
 #include <QTextStream>
 #include <QDockWidget>
 #include <QTreeWidget>
-#include <iostream>
-#include <unistd.h>
 #include <map>
 
 std::map<std::string, QString> QStringMap;
@@ -23,16 +23,23 @@ MainWindow::MainWindow(QWidget *parent)
     QMainWindow::setWindowIcon(QIcon("Images/EasyMenu_Icone.svg"));
 
     ui->setupUi(this);
-    menu = new ControlMenu();
-    menu->setMaximumWidth(700);
 
-    /**test = new QWidget;
-    myLayout = new QHBoxLayout(test);
-    myLayout->addWidget();
-    menu->setMaximumWidth(700);
-    myLayout->addWidget(menu);**/
+    screens = QGuiApplication::screens();
+    screen = screens.first();
+    screenGeometry = screen->geometry();
+    HEIGHT = screenGeometry.height();
 
-    layout()->addWidget(menu);
+    menuG = new ControlMenuMain();
+    FenG = new QWidget;
+    WId WidFromPid = this->winId();
+    container = QWindow::fromWinId(WidFromPid);
+    FenApp = QWidget::createWindowContainer(container);
+    myLayout = new QHBoxLayout(FenG);
+    menuG->setMaximumWidth(700);
+    menuG->setMaximumHeight(HEIGHT);
+    myLayout->addWidget(FenApp);
+    myLayout->addWidget(menuG);
+    FenG->showFullScreen();
 
     fontC = ui->Calculatrice->font();
     fontE = ui->Email->font();
@@ -40,11 +47,6 @@ MainWindow::MainWindow(QWidget *parent)
     fontN = ui->Notes->font();
     fontD = ui->Discord->font();
     fontM = ui->Music->font();
-
-    screens = QGuiApplication::screens();
-    screen = screens.first();
-    screenGeometry = screen->geometry();
-    HEIGHT = screenGeometry.height();
 
     QS1 = QSize((int)(HEIGHT*.3),(int)(HEIGHT*.3));
     fSize1 = (int)((HEIGHT*.03) / 3);
@@ -297,9 +299,24 @@ uint64_t hexToInt(QString str){
     return n;
 }
 
+void MainWindow::QuitApp() {
+    /**KCalculatrice->kill();
+    email->kill();
+    office->kill();
+    web->kill();
+    DiscordLauncher->kill();**/
+    FenG->close();
+    FenC->close();
+    FenD->close();
+    FenE->close();
+    FenI->close();
+    FenM->close();
+    FenN->close();
+    qApp->quit();
+}
+
 void MainWindow::handleStateChanged(QProcess *procss, QWidget *widget, QWidget *testkill)
 {
-    //std::cout << "ça passe par là" << std::endl;
     if (procss->state() == QProcess::NotRunning)
     {
         widget->close();
@@ -309,165 +326,197 @@ void MainWindow::handleStateChanged(QProcess *procss, QWidget *widget, QWidget *
 
 void MainWindow::on_Calculatrice_clicked()
 {
-    KCalculatrice->start("env QT_SCALE_FACTOR=3 /usr/bin/kcalc");
-    myPid = KCalculatrice->pid();
-    PIDtxt = QString::number(myPid);
-    program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
-    QString stdout;
-    do {
-        WidFromPid.start(program);
-        WidFromPid.waitForFinished(-1);
-        stdout = WidFromPid.readAllStandardOutput();
-        myWinID = hexToInt(stdout);
+    if (KCalculatrice->state() == QProcess::Running) {
+        FenC->showFullScreen();
+    } else {
+        KCalculatrice->start("env QT_SCALE_FACTOR=3 /usr/bin/kcalc");
+        myPid = KCalculatrice->pid();
+        PIDtxt = QString::number(myPid);
+        program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
+        QString stdout;
+        do {
+            WidFromPid.start(program);
+            WidFromPid.waitForFinished(-1);
+            stdout = WidFromPid.readAllStandardOutput();
+            myWinID = hexToInt(stdout);
+        } while (not myWinID);
+        ma_fenetre = QWindow::fromWinId(myWinID);
+        myWidgetKCalc = QWidget::createWindowContainer(ma_fenetre);
+        FenC = new QWidget;
+        myLayout = new QHBoxLayout(FenC);
+        myLayout->addWidget(myWidgetKCalc);
+        menuC = new ControlMenu();
+        menuC->setMaximumWidth(700);
+        menuC->setMaximumHeight(HEIGHT);
+        myLayout->addWidget(menuC);
+        FenC->showFullScreen();
     }
-    while(not myWinID);
-    ma_fenetre = QWindow::fromWinId(myWinID);
-    myWidgetKCalc = QWidget::createWindowContainer(ma_fenetre);
-    test = new QWidget;
-    myLayout = new QHBoxLayout(test);
-    myLayout->addWidget(myWidgetKCalc);
-    menu->setMaximumWidth(700);
-    myLayout->addWidget(menu);
-    test->showFullScreen();
     connect(KCalculatrice, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(KCalculatrice, myWidgetKCalc, test); });
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(KCalculatrice, myWidgetKCalc, FenC); });
 }
 
 void MainWindow::on_Email_clicked()
 {
-    email->kill();
-    email->start("pkill -f \"trojita\"");
-    email->waitForFinished(-1);
-    email->start("/usr/bin/trojita");
-    myPid = email->pid();
-    PIDtxt = QString::number(myPid);
-    program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
-    QString stdout;
-    do {
-        WidFromPid.start(program);
-        WidFromPid.waitForFinished(-1);
-        stdout = WidFromPid.readAllStandardOutput();
-        myWinID = hexToInt(stdout);
+    if (email->state() == QProcess::Running) {
+        FenE->showFullScreen();
+    } else {
+        email->start("pkill -f \"trojita\"");
+        email->waitForFinished(-1);
+        email->start("/usr/bin/trojita");
+        myPid = email->pid();
+        PIDtxt = QString::number(myPid);
+        program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
+        QString stdout;
+        do {
+            WidFromPid.start(program);
+            WidFromPid.waitForFinished(-1);
+            stdout = WidFromPid.readAllStandardOutput();
+            myWinID = hexToInt(stdout);
+        } while (not myWinID);
+        ma_fenetre = QWindow::fromWinId(myWinID);
+        myWidgetemail = QWidget::createWindowContainer(ma_fenetre);
+        FenE = new QWidget;
+        myLayout = new QHBoxLayout(FenE);
+        myLayout->addWidget(myWidgetemail);
+        menuE = new ControlMenu();
+        menuE->setMaximumWidth(700);
+        menuE->setMaximumHeight(HEIGHT);
+        myLayout->addWidget(menuE);
+        FenE->showFullScreen();
     }
-    while(not myWinID);
-    ma_fenetre = QWindow::fromWinId(myWinID);
-    myWidgetemail = QWidget::createWindowContainer(ma_fenetre);
-    test = new QWidget;
-    myLayout = new QHBoxLayout(test);
-    myLayout->addWidget(myWidgetemail);
-    menu->setMaximumWidth(700);
-    myLayout->addWidget(menu);
-    test->showFullScreen();
     connect(email, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(email, myWidgetemail, test); });
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(email, myWidgetemail, FenE); });
 }
 
 void MainWindow::on_Notes_clicked()
 {
-    office->start("/usr/bin/onlyoffice-desktopeditors");
-    myPid = office->pid();
-    PIDtxt = QString::number(myPid);
-    program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
-    QString stdout;
-    do {
-        WidFromPid.start(program);
-        WidFromPid.waitForFinished(-1);
-        stdout = WidFromPid.readAllStandardOutput();
-        myWinID = hexToInt(stdout);
+    if (office->state() == QProcess::Running) {
+        FenN->showFullScreen();
+    } else {
+        office->start("pkill -f \"onlyoffice-desktopeditors\"");
+        office->waitForFinished(-1);
+        office->start("/usr/bin/onlyoffice-desktopeditors");
+        myPid = office->pid();
+        PIDtxt = QString::number(myPid);
+        program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
+        QString stdout;
+        do {
+            WidFromPid.start(program);
+            WidFromPid.waitForFinished(-1);
+            stdout = WidFromPid.readAllStandardOutput();
+            myWinID = hexToInt(stdout);
+        } while (not myWinID);
+        ma_fenetre = QWindow::fromWinId(myWinID);
+        myWidgetOffice = QWidget::createWindowContainer(ma_fenetre);
+        FenN = new QWidget;
+        myLayout = new QHBoxLayout(FenN);
+        myLayout->addWidget(myWidgetOffice);
+        menuN = new ControlMenu();
+        menuN->setMaximumWidth(700);
+        menuN->setMaximumHeight(HEIGHT);
+        myLayout->addWidget(menuN);
+        FenN->showFullScreen();
     }
-    while(not myWinID);
-    ma_fenetre = QWindow::fromWinId(myWinID);
-    myWidgetOffice = QWidget::createWindowContainer(ma_fenetre);
-    test = new QWidget;
-    myLayout = new QHBoxLayout(test);
-    myLayout->addWidget(myWidgetOffice);
-    menu->setMaximumWidth(700);
-    myLayout->addWidget(menu);
-    test->showFullScreen();
     connect(office, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(office, myWidgetOffice, test); });
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(office, myWidgetOffice, FenN); });
 }
 
 void MainWindow::on_Internet_clicked()
 {
-    web->start("/usr/bin/sielo-browser");
-    myPid = web->pid();
-    PIDtxt = QString::number(myPid);
-    program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
-    QString stdout;
-    do {
-        WidFromPid.start(program);
-        WidFromPid.waitForFinished(-1);
-        stdout = WidFromPid.readAllStandardOutput();
-        myWinID = hexToInt(stdout);
+    if (web->state() == QProcess::Running) {
+        FenI->showFullScreen();
+    } else {
+        web->start("pkill -f \"sielo-browser\"");
+        web->waitForFinished(-1);
+        web->start("/usr/bin/sielo-browser -r");
+        myPid = web->pid();
+        PIDtxt = QString::number(myPid);
+        program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
+        QString stdout;
+        do {
+            WidFromPid.start(program);
+            WidFromPid.waitForFinished(-1);
+            stdout = WidFromPid.readAllStandardOutput();
+            myWinID = hexToInt(stdout);
+        } while (not myWinID);
+        ma_fenetre = QWindow::fromWinId(myWinID);
+        myWidgetweb = QWidget::createWindowContainer(ma_fenetre);
+        FenI = new QWidget;
+        myLayout = new QHBoxLayout(FenI);
+        myLayout->addWidget(myWidgetweb);
+        menuI = new ControlMenu();
+        menuI->setMaximumWidth(700);
+        menuI->setMaximumHeight(HEIGHT);
+        myLayout->addWidget(menuI);
+        FenI->showFullScreen();
     }
-    while(not myWinID);
-    ma_fenetre = QWindow::fromWinId(myWinID);
-    myWidgetweb = QWidget::createWindowContainer(ma_fenetre);
-    test = new QWidget;
-    myLayout = new QHBoxLayout(test);
-    myLayout->addWidget(myWidgetweb);
-    menu->setMaximumWidth(700);
-    myLayout->addWidget(menu);
-    test->showFullScreen();
     connect(web, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-    [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(web, myWidgetweb, test); });
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(web, myWidgetweb, FenI); });
 }
 
 void MainWindow::on_Music_clicked()
 {
-    music->setZoomFactor(3);
-    test = new QWidget;
-    myLayout = new QHBoxLayout(test);
-    myLayout->addWidget(music);
-    menu->setMaximumWidth(700);
-    myLayout->addWidget(menu);
-    test->showFullScreen();
+    if (music->isVisible()) {
+        FenM->showFullScreen();
+    } else {
+        music->setZoomFactor(3);
+        FenM = new QWidget;
+        myLayout = new QHBoxLayout(FenM);
+        myLayout->addWidget(music);
+        menuM = new ControlMenu();
+        menuM->setMaximumWidth(700);
+        menuM->setMaximumHeight(HEIGHT);
+        myLayout->addWidget(menuM);
+        FenM->showFullScreen();
+    }
 }
 
 void MainWindow::on_Discord_clicked()
 {
-    DiscordLauncher->kill();
-    DiscordLauncher->start("pkill -f \"discord\"");
-    DiscordLauncher->waitForFinished(-1);
-    DiscordLauncher->start("/usr/bin/discord");
-    myPid = DiscordLauncher->pid();
-    PIDtxt = QString::number(myPid);
-    program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
-    QString stdout;
-    do {
-        WidFromPid.start(program);
-        WidFromPid.waitForFinished(-1);
-        stdout = WidFromPid.readAllStandardOutput();
-        myWinID = hexToInt(stdout);
+    if (DiscordLauncher->state() == QProcess::Running) {
+        FenD->showFullScreen();
+    } else {
+        DiscordLauncher->start("pkill -f \"discord\"");
+        DiscordLauncher->waitForFinished(-1);
+        DiscordLauncher->start("/usr/bin/discord");
+        myPid = DiscordLauncher->pid();
+        PIDtxt = QString::number(myPid);
+        program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
+        QString stdout;
+        do {
+            WidFromPid.start(program);
+            WidFromPid.waitForFinished(-1);
+            stdout = WidFromPid.readAllStandardOutput();
+            myWinID = hexToInt(stdout);
+        } while (not myWinID);
+        ma_fenetre = QWindow::fromWinId(myWinID);
+        myWidgetDiscord = QWidget::createWindowContainer(ma_fenetre);
+        myWidgetDiscord->showFullScreen();
+        do {
+            WidFromPid.start(program);
+            WidFromPid.waitForFinished(-1);
+            stdout = WidFromPid.readAllStandardOutput();
+            myWinID = hexToInt(stdout);
+        } while (myWinID);
+        myWidgetDiscord->close();
+        do {
+            WidFromPid.start(program);
+            WidFromPid.waitForFinished(-1);
+            stdout = WidFromPid.readAllStandardOutput();
+            myWinID = hexToInt(stdout);
+        } while (not myWinID);
+        ma_fenetre = QWindow::fromWinId(myWinID);
+        myWidgetDiscord = QWidget::createWindowContainer(ma_fenetre);
+        FenD = new QWidget;
+        myLayout = new QHBoxLayout(FenD);
+        myLayout->addWidget(myWidgetDiscord);
+        menuD = new ControlMenu();
+        menuD->setMaximumWidth(700);
+        menuD->setMaximumHeight(HEIGHT);
+        myLayout->addWidget(menuD);
+        FenD->showFullScreen();
     }
-    while(not myWinID);
-    ma_fenetre = QWindow::fromWinId(myWinID);
-    myWidgetDiscord = QWidget::createWindowContainer(ma_fenetre);
-    myWidgetDiscord->showFullScreen();
-    do {
-        WidFromPid.start(program);
-        WidFromPid.waitForFinished(-1);
-        stdout = WidFromPid.readAllStandardOutput();
-        myWinID = hexToInt(stdout);
-    }
-    while(myWinID);
-    myWidgetDiscord->close();
-    do {
-        WidFromPid.start(program);
-        WidFromPid.waitForFinished(-1);
-        stdout = WidFromPid.readAllStandardOutput();
-        myWinID = hexToInt(stdout);
-    }
-    while(not myWinID);
-    ma_fenetre = QWindow::fromWinId(myWinID);
-    myWidgetDiscord = QWidget::createWindowContainer(ma_fenetre);
-    test = new QWidget;
-    myLayout = new QHBoxLayout(test);
-    myLayout->addWidget(myWidgetDiscord);
-    menu->setMaximumWidth(700);
-    myLayout->addWidget(menu);
-    test->showFullScreen();
     connect(DiscordLauncher, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(DiscordLauncher, myWidgetDiscord, test); });
+            [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(DiscordLauncher, myWidgetDiscord, FenD); });
 }
+

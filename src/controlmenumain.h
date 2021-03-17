@@ -1,5 +1,5 @@
-#ifndef CONTROLMENU_H
-#define CONTROLMENU_H
+#ifndef CONTROLMENUMAIN_H
+#define CONTROLMENUMAIN_H
 
 #include <QWidget>
 #include <QMainWindow>
@@ -7,19 +7,19 @@
 #include "mainwindow.h"
 
 namespace Ui {
-class ControlMenu;
+class ControlMenuMain;
 }
 
-class ControlMenu : public QWidget
+class ControlMenuMain : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ControlMenu(QWidget *parent = nullptr);
-    ~ControlMenu();
+    explicit ControlMenuMain(QWidget *parent = nullptr);
+    ~ControlMenuMain();
 
 private:
-    Ui::ControlMenu *ui;
+    Ui::ControlMenuMain *ui;
 
 private slots:
     void on_Fermeture_clicked();
@@ -27,4 +27,4 @@ private slots:
     void on_Options_clicked();
     void showTime();
 };
-#endif // CONTROLMENU_H
+#endif // CONTROLMENUMAIN_H

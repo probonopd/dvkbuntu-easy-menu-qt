@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'controlmenu.ui'
+** Form generated from reading UI file 'controlmenumain.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.12.8
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_CONTROLMENU_H
-#define UI_CONTROLMENU_H
+#ifndef UI_CONTROLMENUMAIN_H
+#define UI_CONTROLMENUMAIN_H
 
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
@@ -20,7 +20,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_ControlMenu
+class Ui_ControlMenuMain
 {
 public:
     QWidget *gridLayoutWidget;
@@ -31,12 +31,12 @@ public:
     QLabel *Horlorge;
     QToolButton *Fermeture;
 
-    void setupUi(QWidget *ControlMenu)
+    void setupUi(QWidget *ControlMenuMain)
     {
-        if (ControlMenu->objectName().isEmpty())
-            ControlMenu->setObjectName(QString::fromUtf8("ControlMenu"));
-        ControlMenu->resize(739, 1149);
-        gridLayoutWidget = new QWidget(ControlMenu);
+        if (ControlMenuMain->objectName().isEmpty())
+            ControlMenuMain->setObjectName(QString::fromUtf8("ControlMenu"));
+        ControlMenuMain->resize(739, 1149);
+        gridLayoutWidget = new QWidget(ControlMenuMain);
         gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
         gridLayoutWidget->setGeometry(QRect(20, 20, 708, 1121));
         gridLayout_2 = new QGridLayout(gridLayoutWidget);
@@ -93,26 +93,26 @@ public:
         gridLayout_2->addWidget(Fermeture, 0, 2, 1, 1);
 
 
-        retranslateUi(ControlMenu);
+        retranslateUi(ControlMenuMain);
 
-        QMetaObject::connectSlotsByName(ControlMenu);
+        QMetaObject::connectSlotsByName(ControlMenuMain);
     } // setupUi
 
-    void retranslateUi(QWidget *ControlMenu)
+    void retranslateUi(QWidget *ControlMenuMain)
     {
-        ControlMenu->setWindowTitle(QApplication::translate("ControlMenu", "Form", nullptr));
-        Options->setText(QApplication::translate("ControlMenu", "...", nullptr));
-        Home->setText(QApplication::translate("ControlMenu", "...", nullptr));
-        Horlorge->setText(QApplication::translate("ControlMenu", "TextLabel", nullptr));
-        Fermeture->setText(QApplication::translate("ControlMenu", "...", nullptr));
+        ControlMenuMain->setWindowTitle(QApplication::translate("ControlMenuMain", "Form", nullptr));
+        Options->setText(QApplication::translate("ControlMenuMain", "...", nullptr));
+        Home->setText(QApplication::translate("ControlMenuMain", "...", nullptr));
+        Horlorge->setText(QApplication::translate("ControlMenuMain", "TextLabel", nullptr));
+        Fermeture->setText(QApplication::translate("ControlMenuMain", "...", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class ControlMenu: public Ui_ControlMenu {};
+    class ControlMenuMain: public Ui_ControlMenuMain {};
 } // namespace Ui
 
 QT_END_NAMESPACE
 
-#endif // UI_CONTROLMENU_H
+#endif // UI_CONTROLMENUMAIN_H

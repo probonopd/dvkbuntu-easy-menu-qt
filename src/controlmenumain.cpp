@@ -1,39 +1,39 @@
-#include "controlmenu.h"
-#include "ui_controlmenu.h"
+#include "controlmenumain.h"
+#include "ui_controlmenumain.h"
 #include <QDesktopWidget>
 #include <QTimer>
 
-ControlMenu::ControlMenu(QWidget *parent) :
+ControlMenuMain::ControlMenuMain(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::ControlMenu)
+    ui(new Ui::ControlMenuMain)
 {
     ui->setupUi(this);
 
     QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &ControlMenu::showTime);
+    connect(timer, &QTimer::timeout, this, &ControlMenuMain::showTime);
     timer->start(1000);
 
     showTime();
 }
 
-ControlMenu::~ControlMenu()
+ControlMenuMain::~ControlMenuMain()
 {
     delete ui;
 }
 
-void ControlMenu::on_Fermeture_clicked()
+void ControlMenuMain::on_Fermeture_clicked()
 {
-    this->parentWidget()->close();
+    MainWindow().QuitApp();
 }
-void ControlMenu::on_Home_clicked() {
-    this->parentWidget()->hide();
-}
-
-void ControlMenu::on_Options_clicked() {
+void ControlMenuMain::on_Home_clicked() {
 
 }
 
-void ControlMenu::showTime()
+void ControlMenuMain::on_Options_clicked() {
+
+}
+
+void ControlMenuMain::showTime()
 {
     QTime time = QTime::currentTime();
     QString text = time.toString("hh:mm");

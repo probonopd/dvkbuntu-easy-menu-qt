@@ -32,6 +32,9 @@ set(PROJECT_SOURCES
         src/controlmenu.cpp
         src/controlmenu.h
         src/controlmenu.ui
+        src/controlmenumain.cpp
+        src/controlmenumain.h
+        src/controlmenumain.ui
         src/resource.qrc
 )
 

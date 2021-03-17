@@ -13,6 +13,7 @@
 #include <QMediaPlaylist>
 #include <QDesktopWidget>
 #include "controlmenu.h"
+#include "controlmenumain.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -49,30 +50,45 @@ public:
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     QMediaPlayer *player = new QMediaPlayer;
     QMediaPlaylist *playlist = new QMediaPlaylist;
-
-private:
-    Ui::MainWindow *ui;
+    QWidget* menuG;
+    QWidget* menuC;
+    QWidget* menuE;
+    QWidget* menuI;
+    QWidget* menuN;
+    QWidget* menuD;
+    QWidget* menuM;
     QProcess *KCalculatrice = new QProcess;
     QProcess *DiscordLauncher = new QProcess;
     QProcess *web = new QProcess;
     QProcess *office = new QProcess;
     QProcess *email = new QProcess;
     QWebEngineView *music = new QWebEngineView();
+    void QuitApp();
+
+private:
+    Ui::MainWindow *ui;
     bool play = false;
     QString program;
     QString PIDtxt;
     QProcess WidFromPid;
     WId myWinID;
     int myPid;
-    QWindow *ma_fenetre;
-    QWidget *myWidgetKCalc;
-    QWidget *myWidgetemail;
-    QWidget *myWidgetOffice;
-    QWidget *myWidgetweb;
-    QWidget *myWidgetDiscord;
-    ControlMenu* menu;
+    QWindow* ma_fenetre;
+    QWidget* myWidgetKCalc;
+    QWidget* myWidgetemail;
+    QWidget* myWidgetOffice;
+    QWidget* myWidgetweb;
+    QWidget* myWidgetDiscord;
     QLayout *myLayout;
-    QWidget *test;
+    QWidget *FenG;
+    QWidget *FenC;
+    QWidget *FenE;
+    QWidget *FenI;
+    QWidget *FenN;
+    QWidget *FenD;
+    QWidget *FenM;
+    QWidget *FenApp;
+    QWindow *container;
 
 
 private slots:
