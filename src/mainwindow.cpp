@@ -300,11 +300,6 @@ uint64_t hexToInt(QString str){
 }
 
 void MainWindow::QuitApp() {
-    /**KCalculatrice->kill();
-    email->kill();
-    office->kill();
-    web->kill();
-    DiscordLauncher->kill();**/
     FenG->close();
     FenC->close();
     FenD->close();
@@ -312,7 +307,7 @@ void MainWindow::QuitApp() {
     FenI->close();
     FenM->close();
     FenN->close();
-    qApp->quit();
+    //qApp->quit();
 }
 
 void MainWindow::handleStateChanged(QProcess *procss, QWidget *widget, QWidget *testkill)
@@ -329,6 +324,8 @@ void MainWindow::on_Calculatrice_clicked()
     if (KCalculatrice->state() == QProcess::Running) {
         FenC->showFullScreen();
     } else {
+        KCalculatrice->start("killall -f kcalc");
+        KCalculatrice->waitForFinished(-1);
         KCalculatrice->start("env QT_SCALE_FACTOR=3 /usr/bin/kcalc");
         myPid = KCalculatrice->pid();
         PIDtxt = QString::number(myPid);
@@ -336,7 +333,8 @@ void MainWindow::on_Calculatrice_clicked()
         QString stdout;
         do {
             WidFromPid.start(program);
-            WidFromPid.waitForFinished(-1);
+            WidFromPid.waitForFinished(-1);    web->start("killall -SIGTERM \"sielo-browser\"");
+    web->waitForFinished(-1);
             stdout = WidFromPid.readAllStandardOutput();
             myWinID = hexToInt(stdout);
         } while (not myWinID);
@@ -360,7 +358,7 @@ void MainWindow::on_Email_clicked()
     if (email->state() == QProcess::Running) {
         FenE->showFullScreen();
     } else {
-        email->start("pkill -f \"trojita\"");
+        email->start("pkill -f trojita");
         email->waitForFinished(-1);
         email->start("/usr/bin/trojita");
         myPid = email->pid();
@@ -393,7 +391,7 @@ void MainWindow::on_Notes_clicked()
     if (office->state() == QProcess::Running) {
         FenN->showFullScreen();
     } else {
-        office->start("pkill -f \"onlyoffice-desktopeditors\"");
+        office->start("pkill -f DesktopEditors");
         office->waitForFinished(-1);
         office->start("/usr/bin/onlyoffice-desktopeditors");
         myPid = office->pid();
@@ -426,9 +424,11 @@ void MainWindow::on_Internet_clicked()
     if (web->state() == QProcess::Running) {
         FenI->showFullScreen();
     } else {
-        web->start("pkill -f \"sielo-browser\"");
+
+        web->start("pkill -f falkon");
         web->waitForFinished(-1);
-        web->start("/usr/bin/sielo-browser -r");
+
+        web->start("env QT_SCALE_FACTOR=2 /usr/bin/falkon -u https://doosearch.sielo.app/search.php");
         myPid = web->pid();
         PIDtxt = QString::number(myPid);
         program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
@@ -439,6 +439,7 @@ void MainWindow::on_Internet_clicked()
             stdout = WidFromPid.readAllStandardOutput();
             myWinID = hexToInt(stdout);
         } while (not myWinID);
+        ma_fenetre = QWindow::fromWinId(myWinID);
         ma_fenetre = QWindow::fromWinId(myWinID);
         myWidgetweb = QWidget::createWindowContainer(ma_fenetre);
         FenI = new QWidget;
@@ -476,7 +477,7 @@ void MainWindow::on_Discord_clicked()
     if (DiscordLauncher->state() == QProcess::Running) {
         FenD->showFullScreen();
     } else {
-        DiscordLauncher->start("pkill -f \"discord\"");
+        DiscordLauncher->start("pkill -f discord");
         DiscordLauncher->waitForFinished(-1);
         DiscordLauncher->start("/usr/bin/discord");
         myPid = DiscordLauncher->pid();
