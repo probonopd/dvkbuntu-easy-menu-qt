@@ -32,6 +32,19 @@ public:
     QToolButton *Notes;
     QToolButton *Discord;
     QToolButton *Music;
+    QWindow* ma_fenetreG;
+    QWindow* ma_fenetreC;
+    QWindow* ma_fenetreE;
+    QWindow* ma_fenetreI;
+    QWindow* ma_fenetreN;
+    QWindow* ma_fenetreD;
+    QWidget *FenG;
+    QWidget *FenC;
+    QWidget *FenE;
+    QWidget *FenI;
+    QWidget *FenN;
+    QWidget *FenD;
+    QWidget *FenM;
     QList<QScreen*> screens;
     QScreen *screen;
     QRect screenGeometry;
@@ -63,7 +76,6 @@ public:
     QProcess *office = new QProcess;
     QProcess *email = new QProcess;
     QWebEngineView *music = new QWebEngineView();
-    void QuitApp();
 
 private:
     Ui::MainWindow *ui;
@@ -73,22 +85,13 @@ private:
     QProcess WidFromPid;
     WId myWinID;
     int myPid;
-    QWindow* ma_fenetre;
     QWidget* myWidgetKCalc;
     QWidget* myWidgetemail;
     QWidget* myWidgetOffice;
     QWidget* myWidgetweb;
     QWidget* myWidgetDiscord;
     QLayout *myLayout;
-    QWidget *FenG;
-    QWidget *FenC;
-    QWidget *FenE;
-    QWidget *FenI;
-    QWidget *FenN;
-    QWidget *FenD;
-    QWidget *FenM;
     QWidget *FenApp;
-    QWindow *container;
 
 
 private slots:

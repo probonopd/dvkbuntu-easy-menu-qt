@@ -32,8 +32,8 @@ MainWindow::MainWindow(QWidget *parent)
     menuG = new ControlMenuMain();
     FenG = new QWidget;
     WId WidFromPid = this->winId();
-    container = QWindow::fromWinId(WidFromPid);
-    FenApp = QWidget::createWindowContainer(container);
+    ma_fenetreG = QWindow::fromWinId(WidFromPid);
+    FenApp = QWidget::createWindowContainer(ma_fenetreG);
     myLayout = new QHBoxLayout(FenG);
     menuG->setMaximumWidth(700);
     menuG->setMaximumHeight(HEIGHT);
@@ -299,17 +299,6 @@ uint64_t hexToInt(QString str){
     return n;
 }
 
-void MainWindow::QuitApp() {
-    FenG->close();
-    FenC->close();
-    FenD->close();
-    FenE->close();
-    FenI->close();
-    FenM->close();
-    FenN->close();
-    //qApp->quit();
-}
-
 void MainWindow::handleStateChanged(QProcess *procss, QWidget *widget, QWidget *testkill)
 {
     if (procss->state() == QProcess::NotRunning)
@@ -333,13 +322,12 @@ void MainWindow::on_Calculatrice_clicked()
         QString stdout;
         do {
             WidFromPid.start(program);
-            WidFromPid.waitForFinished(-1);    web->start("killall -SIGTERM \"sielo-browser\"");
-    web->waitForFinished(-1);
+            WidFromPid.waitForFinished(-1);
             stdout = WidFromPid.readAllStandardOutput();
             myWinID = hexToInt(stdout);
         } while (not myWinID);
-        ma_fenetre = QWindow::fromWinId(myWinID);
-        myWidgetKCalc = QWidget::createWindowContainer(ma_fenetre);
+        ma_fenetreC = QWindow::fromWinId(myWinID);
+        myWidgetKCalc = QWidget::createWindowContainer(ma_fenetreC);
         FenC = new QWidget;
         myLayout = new QHBoxLayout(FenC);
         myLayout->addWidget(myWidgetKCalc);
@@ -371,8 +359,8 @@ void MainWindow::on_Email_clicked()
             stdout = WidFromPid.readAllStandardOutput();
             myWinID = hexToInt(stdout);
         } while (not myWinID);
-        ma_fenetre = QWindow::fromWinId(myWinID);
-        myWidgetemail = QWidget::createWindowContainer(ma_fenetre);
+        ma_fenetreE = QWindow::fromWinId(myWinID);
+        myWidgetemail = QWidget::createWindowContainer(ma_fenetreE);
         FenE = new QWidget;
         myLayout = new QHBoxLayout(FenE);
         myLayout->addWidget(myWidgetemail);
@@ -404,8 +392,8 @@ void MainWindow::on_Notes_clicked()
             stdout = WidFromPid.readAllStandardOutput();
             myWinID = hexToInt(stdout);
         } while (not myWinID);
-        ma_fenetre = QWindow::fromWinId(myWinID);
-        myWidgetOffice = QWidget::createWindowContainer(ma_fenetre);
+        ma_fenetreN = QWindow::fromWinId(myWinID);
+        myWidgetOffice = QWidget::createWindowContainer(ma_fenetreN);
         FenN = new QWidget;
         myLayout = new QHBoxLayout(FenN);
         myLayout->addWidget(myWidgetOffice);
@@ -426,9 +414,11 @@ void MainWindow::on_Internet_clicked()
     } else {
 
         web->start("pkill -f falkon");
+        //web->start("pkill -f sielo-browser");
         web->waitForFinished(-1);
 
-        web->start("env QT_SCALE_FACTOR=2 /usr/bin/falkon -u https://doosearch.sielo.app/search.php");
+        web->start("env QT_SCALE_FACTOR=2 /usr/bin/falkon -c https://doosearch.sielo.app/search.php");
+        //web->start("/usr/bin/sielo-browser");
         myPid = web->pid();
         PIDtxt = QString::number(myPid);
         program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
@@ -439,9 +429,8 @@ void MainWindow::on_Internet_clicked()
             stdout = WidFromPid.readAllStandardOutput();
             myWinID = hexToInt(stdout);
         } while (not myWinID);
-        ma_fenetre = QWindow::fromWinId(myWinID);
-        ma_fenetre = QWindow::fromWinId(myWinID);
-        myWidgetweb = QWidget::createWindowContainer(ma_fenetre);
+        ma_fenetreI = QWindow::fromWinId(myWinID);
+        myWidgetweb = QWidget::createWindowContainer(ma_fenetreI);
         FenI = new QWidget;
         myLayout = new QHBoxLayout(FenI);
         myLayout->addWidget(myWidgetweb);
@@ -490,8 +479,8 @@ void MainWindow::on_Discord_clicked()
             stdout = WidFromPid.readAllStandardOutput();
             myWinID = hexToInt(stdout);
         } while (not myWinID);
-        ma_fenetre = QWindow::fromWinId(myWinID);
-        myWidgetDiscord = QWidget::createWindowContainer(ma_fenetre);
+        ma_fenetreD = QWindow::fromWinId(myWinID);
+        myWidgetDiscord = QWidget::createWindowContainer(ma_fenetreD);
         myWidgetDiscord->showFullScreen();
         do {
             WidFromPid.start(program);
@@ -506,8 +495,8 @@ void MainWindow::on_Discord_clicked()
             stdout = WidFromPid.readAllStandardOutput();
             myWinID = hexToInt(stdout);
         } while (not myWinID);
-        ma_fenetre = QWindow::fromWinId(myWinID);
-        myWidgetDiscord = QWidget::createWindowContainer(ma_fenetre);
+        ma_fenetreD = QWindow::fromWinId(myWinID);
+        myWidgetDiscord = QWidget::createWindowContainer(ma_fenetreD);
         FenD = new QWidget;
         myLayout = new QHBoxLayout(FenD);
         myLayout->addWidget(myWidgetDiscord);

@@ -2,6 +2,7 @@
 #include "ui_controlmenumain.h"
 #include <QDesktopWidget>
 #include <QTimer>
+#include <QWindow>
 
 ControlMenuMain::ControlMenuMain(QWidget *parent) :
     QWidget(parent),
@@ -23,8 +24,22 @@ ControlMenuMain::~ControlMenuMain()
 
 void ControlMenuMain::on_Fermeture_clicked()
 {
-    MainWindow().QuitApp();
+    MainWindow().ma_fenetreC->destroy();
+    MainWindow().ma_fenetreE->destroy();
+    MainWindow().ma_fenetreI->destroy();
+    MainWindow().Music->close();
+    MainWindow().ma_fenetreN->destroy();
+    MainWindow().ma_fenetreD->destroy();
+    MainWindow().ma_fenetreG->destroy();
+    MainWindow().FenC->close();
+    MainWindow().FenE->close();
+    MainWindow().FenI->close();
+    MainWindow().FenM->close();
+    MainWindow().FenN->close();
+    MainWindow().FenD->close();
+    MainWindow().FenG->close();
 }
+
 void ControlMenuMain::on_Home_clicked() {
 
 }
