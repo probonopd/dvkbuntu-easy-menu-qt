@@ -13,6 +13,8 @@
 #include <QDockWidget>
 #include <QTreeWidget>
 #include <map>
+#include <QHBoxLayout>
+#include <QGuiApplication>
 
 std::map<std::string, QString> QStringMap;
 
