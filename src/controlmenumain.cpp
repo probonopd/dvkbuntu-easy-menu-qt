@@ -1,5 +1,7 @@
 #include "controlmenumain.h"
 #include "ui_controlmenumain.h"
+#include "options.h"
+#include "ui_options.h"
 #include <QDesktopWidget>
 #include <QTimer>
 #include <QWindow>
@@ -45,7 +47,15 @@ void ControlMenuMain::on_Home_clicked() {
 }
 
 void ControlMenuMain::on_Options_clicked() {
+    MainWindow().music->stop();
 
+    Options *myOptions = new Options();
+    myOptions->show();
+}
+
+void ControlMenuMain::on_PowerOff_clicked() {
+    QProcess Extinction;
+    Extinction.startDetached("shutdown -P now");
 }
 
 void ControlMenuMain::showTime()

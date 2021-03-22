@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
+#include "options.h"
+#include "ui_options.h"
 
 namespace Ui {
 class ControlMenuMain;
@@ -25,6 +27,7 @@ private slots:
     void on_Fermeture_clicked();
     void on_Home_clicked();
     void on_Options_clicked();
+    void on_PowerOff_clicked();
     void showTime();
 };
 #endif // CONTROLMENUMAIN_H

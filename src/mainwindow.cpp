@@ -15,6 +15,7 @@
 #include <map>
 #include <QHBoxLayout>
 #include <QGuiApplication>
+#include <QSettings>
 
 std::map<std::string, QString> QStringMap;
 
@@ -22,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    QMainWindow::setWindowIcon(QIcon("Images/EasyMenu_Icone.svg"));
+    QMainWindow::setWindowIcon(QIcon("../Images/EasyMenu_Icone.svg"));
 
     ui->setupUi(this);
 
@@ -30,9 +31,8 @@ MainWindow::MainWindow(QWidget *parent)
     screen = screens.first();
     screenGeometry = screen->geometry();
     HEIGHT = screenGeometry.height();
-
-    menuG = new ControlMenuMain();
     FenG = new QWidget;
+    menuG = new ControlMenuMain();
     WId WidFromPid = this->winId();
     ma_fenetreG = QWindow::fromWinId(WidFromPid);
     FenApp = QWidget::createWindowContainer(ma_fenetreG);
@@ -55,12 +55,36 @@ MainWindow::MainWindow(QWidget *parent)
     QS2 = QSize((int)(HEIGHT*.05),(int)(HEIGHT*.05));
     fSize2 = (int)((HEIGHT*.1) / 3);
 
+    QProcess GetValue;
+    GetValue.start("cat \"" + env.value("HOME") +"/.easymenu/MusiqueService\"");
+    GetValue.waitForFinished(-1);
+    QString ServiceMusiqueString = GetValue.readAllStandardOutput();
+    ServiceMusique = ServiceMusiqueString.toInt();
+
+    //music->stop();
+
+    QString musicText;
+
+    switch ( ServiceMusique )
+    {
+        case 1:
+            musicText = "Ecouter de\nla musique\nsur YouTube";
+            music->load(QUrl("https://www.youtube.com/"));
+            break;
+        case 2:
+            musicText = "Ecouter de\nla musique\nsur Deezer";
+            music->load(QUrl("https://www.deezer.com/fr/"));
+            break;
+        default:
+            musicText = "Ecouter de\nla musique\nsur Jamendo";
+            music->load(QUrl("https://www.jamendo.com/start"));
+    }
+
     QString calculatriceText = "Calculatrice";
     QString emailText = "Gestion \ne-mail";
     QString internetText = "Accédez\nà internet";
     QString notesText = "Texte,\nCalcul ou \nPrésentation";
     QString discordText = "Nous\nrejoindre\nsur Discord";
-    QString musicText = "Ecouter de\nla musique\nsur Jamendo";
 
     QStringMap["Calculatrice"] = calculatriceText;
     QStringMap["Email"] = emailText;
@@ -109,7 +133,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Discord->installEventFilter(this);
     ui->Music->installEventFilter(this);
 
-    music->load(QUrl("https://www.jamendo.com/start"));
 }
 
 MainWindow::~MainWindow()
@@ -414,7 +437,6 @@ void MainWindow::on_Internet_clicked()
     if (web->state() == QProcess::Running) {
         FenI->showFullScreen();
     } else {
-
         web->start("pkill -f falkon");
         //web->start("pkill -f sielo-browser");
         web->waitForFinished(-1);
@@ -511,4 +533,3 @@ void MainWindow::on_Discord_clicked()
     connect(DiscordLauncher, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
             [=](int exitCode, QProcess::ExitStatus exitStatus){ handleStateChanged(DiscordLauncher, myWidgetDiscord, FenD); });
 }
-

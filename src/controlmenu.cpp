@@ -1,5 +1,7 @@
 #include "controlmenu.h"
 #include "ui_controlmenu.h"
+#include "options.h"
+#include "ui_options.h"
 #include <QDesktopWidget>
 #include <QTimer>
 
@@ -30,7 +32,12 @@ void ControlMenu::on_Home_clicked() {
 }
 
 void ControlMenu::on_Options_clicked() {
+    if (MainWindow().FenM->isHidden()) {
+        MainWindow().music->stop();
+    }
 
+    Options *myOptions = new Options();
+    myOptions->show();
 }
 
 void ControlMenu::showTime()

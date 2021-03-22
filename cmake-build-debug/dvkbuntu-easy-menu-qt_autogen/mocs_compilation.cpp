@@ -2,3 +2,4 @@
 #include "UVLADIE3JM/moc_controlmenu.cpp"
 #include "UVLADIE3JM/moc_controlmenumain.cpp"
 #include "UVLADIE3JM/moc_mainwindow.cpp"
+#include "UVLADIE3JM/moc_options.cpp"

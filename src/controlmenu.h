@@ -5,6 +5,9 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
+#include "options.h"
+#include "ui_options.h"
+
 
 namespace Ui {
 class ControlMenu;

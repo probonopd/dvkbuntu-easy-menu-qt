@@ -12,6 +12,7 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QDesktopWidget>
+#include <QSettings>
 #include "controlmenu.h"
 #include "controlmenumain.h"
 
@@ -32,6 +33,7 @@ public:
     QToolButton *Notes;
     QToolButton *Discord;
     QToolButton *Music;
+    int ServiceMusique;
     QWindow* ma_fenetreG;
     QWindow* ma_fenetreC;
     QWindow* ma_fenetreE;
@@ -75,7 +77,7 @@ public:
     QProcess *web = new QProcess;
     QProcess *office = new QProcess;
     QProcess *email = new QProcess;
-    QWebEngineView *music = new QWebEngineView();
+    QWebEngineView *music = new QWebEngineView;
 
 private:
     Ui::MainWindow *ui;
