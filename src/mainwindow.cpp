@@ -61,8 +61,6 @@ MainWindow::MainWindow(QWidget *parent)
     QString ServiceMusiqueString = GetValue.readAllStandardOutput();
     ServiceMusique = ServiceMusiqueString.toInt();
 
-    //music->stop();
-
     QString musicText;
 
     switch ( ServiceMusique )

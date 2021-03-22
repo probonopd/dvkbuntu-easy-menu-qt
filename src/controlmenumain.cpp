@@ -47,8 +47,6 @@ void ControlMenuMain::on_Home_clicked() {
 }
 
 void ControlMenuMain::on_Options_clicked() {
-    MainWindow().music->stop();
-
     Options *myOptions = new Options();
     myOptions->show();
 }

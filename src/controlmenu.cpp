@@ -32,10 +32,6 @@ void ControlMenu::on_Home_clicked() {
 }
 
 void ControlMenu::on_Options_clicked() {
-    if (MainWindow().FenM->isHidden()) {
-        MainWindow().music->stop();
-    }
-
     Options *myOptions = new Options();
     myOptions->show();
 }

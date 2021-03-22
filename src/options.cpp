@@ -42,8 +42,7 @@ void Options::on_buttonBox_accepted()
     QProcess SetValue;
     SetValue.start("bash -c \"mkdir -p \"$HOME\"/.easymenu && echo \"" + ChoixServiceMusique + "\" > \"$HOME\"/.easymenu/MusiqueService\"");
     SetValue.waitForFinished(-1);
-    MainWindow *MW = new MainWindow();
-    MW->show();
+    this->close();
 }
 
 void Options::on_buttonBox_rejected()
