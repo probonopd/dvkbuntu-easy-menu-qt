@@ -6,55 +6,78 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>739</width>
-    <height>3064</height>
+    <width>523</width>
+    <height>1063</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="gridLayoutWidget">
+  <widget class="QWidget" name="gridWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>20</y>
-     <width>708</width>
-     <height>1841</height>
+     <width>400</width>
+     <height>1023</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="7" column="2">
-     <spacer name="verticalSpacer_2">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="spacing">
+     <number>9</number>
+    </property>
+    <item row="2" column="1">
+     <spacer name="verticalSpacer_1">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Preferred</enum>
+      </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>200</width>
-        <height>800</height>
+        <width>50</width>
+        <height>80</height>
        </size>
       </property>
      </spacer>
     </item>
-    <item row="4" column="2">
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>200</width>
-        <height>800</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="5" column="2">
+    <item row="3" column="1">
      <widget class="QToolButton" name="Options">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
-        <width>200</width>
-        <height>200</height>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>80</width>
+        <height>80</height>
        </size>
       </property>
       <property name="text">
@@ -66,47 +89,30 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>180</width>
-        <height>180</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
-     <widget class="QToolButton" name="Fermeture">
+    <item row="1" column="1">
+     <widget class="QToolButton" name="Home">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
-        <width>200</width>
-        <height>200</height>
+        <width>0</width>
+        <height>0</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>16777215</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>...</string>
-      </property>
-      <property name="icon">
-       <iconset resource="resource.qrc">
-        <normaloff>:/Images/1-NavigateurWeb/close-alt.svg</normaloff>:/Images/1-NavigateurWeb/close-alt.svg</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>180</width>
-        <height>180</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <widget class="QToolButton" name="Home">
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>200</height>
+        <width>80</width>
+        <height>80</height>
        </size>
       </property>
       <property name="text">
@@ -118,18 +124,78 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>180</width>
-        <height>180</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
      </widget>
     </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="Horlorge">
+    <item row="0" column="1">
+     <widget class="QToolButton" name="Fermeture">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
-        <width>200</width>
-        <height>200</height>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>80</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resource.qrc">
+        <normaloff>:/Images/1-NavigateurWeb/close-alt.svg</normaloff>:/Images/1-NavigateurWeb/close-alt.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>80</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="Horlorge">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
       <property name="font">
@@ -154,12 +220,24 @@
       </property>
      </widget>
     </item>
-    <item row="8" column="2">
+    <item row="5" column="1">
      <widget class="QToolButton" name="PowerOff">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="minimumSize">
        <size>
-        <width>200</width>
-        <height>200</height>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>80</width>
+        <height>80</height>
        </size>
       </property>
       <property name="text">
@@ -171,8 +249,8 @@
       </property>
       <property name="iconSize">
        <size>
-        <width>180</width>
-        <height>180</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
      </widget>

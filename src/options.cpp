@@ -3,6 +3,8 @@
 #include "mainwindow.h"
 #include <QWindow>
 #include <QSettings>
+#include <QApplication>
+#include <QProcess>
 
 Options::Options(QWidget *parent)
     : QMainWindow(parent)
@@ -39,9 +41,13 @@ void Options::on_Deezer_toggled()
 
 void Options::on_buttonBox_accepted()
 {
+    // changement service de musique dans uen variable:
     QProcess SetValue;
     SetValue.start("bash -c \"mkdir -p \"$HOME\"/.easymenu && echo \"" + ChoixServiceMusique + "\" > \"$HOME\"/.easymenu/MusiqueService\"");
     SetValue.waitForFinished(-1);
+    // restart:
+    qApp->quit();
+    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
     this->close();
 }
 

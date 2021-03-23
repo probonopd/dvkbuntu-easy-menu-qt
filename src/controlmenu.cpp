@@ -4,12 +4,43 @@
 #include "ui_options.h"
 #include <QDesktopWidget>
 #include <QTimer>
+#include <QWindow>
+#include <QGuiApplication>
+#include <QRect>
+#include <QScreen>
+#include <string>
+#include <QTextStream>
+#include <QDockWidget>
+#include <QTreeWidget>
+#include <map>
+#include <QSettings>
 
 ControlMenu::ControlMenu(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ControlMenu)
 {
     ui->setupUi(this);
+
+    screens = QGuiApplication::screens();
+    screen = screens.first();
+    screenGeometry = screen->geometry();
+    HEIGHT = screenGeometry.height();
+    double dpi = QGuiApplication::primaryScreen()->physicalDotsPerInch();
+    fSize2 = (int)((80*HEIGHT/2160)*72/dpi);
+
+    int sizeButton = 80 * HEIGHT / 1080;
+
+    ui->Fermeture->setMaximumWidth(sizeButton);
+    ui->Fermeture->setMaximumHeight(sizeButton);
+    ui->Fermeture->setIconSize(QSize(sizeButton, sizeButton));
+
+    ui->Home->setMaximumWidth(sizeButton);
+    ui->Home->setMaximumHeight(sizeButton);
+    ui->Home->setIconSize(QSize(sizeButton, sizeButton));
+
+    ui->Options->setMaximumWidth(sizeButton);
+    ui->Options->setMaximumHeight(sizeButton);
+    ui->Options->setIconSize(QSize(sizeButton, sizeButton));
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &ControlMenu::showTime);
@@ -43,7 +74,8 @@ void ControlMenu::showTime()
     if ((time.second() % 2) == 0)
         text[2] = ' ';
     QFont font;
-    font.setPointSize(60);
+    font.setPointSize(fSize2);
+    ui->Horlorge->setMaximumWidth(120 * HEIGHT / 1080);
     ui->Horlorge->setFont(font);
     ui->Horlorge->setText(text);
 }

@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QMainWindow>
+#include <QRect>
+#include <QScreen>
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include "options.h"
@@ -23,6 +25,12 @@ public:
 
 private:
     Ui::ControlMenu *ui;
+    QList<QScreen*> screens;
+    QScreen *screen;
+    QRect screenGeometry;
+    QSize QS2;
+    int fSize2;
+    int HEIGHT;
 
 private slots:
     void on_Fermeture_clicked();

@@ -61,6 +61,9 @@ public:
     QSize QS2;
     int fSize2;
     int HEIGHT;
+    qreal WIDTH;
+    int WIDTHCONTROL;
+    int WIDTHMAIN;
     QProcess *m_process = new QProcess;
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     QMediaPlayer *player = new QMediaPlayer;
