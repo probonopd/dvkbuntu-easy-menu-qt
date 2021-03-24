@@ -71,6 +71,13 @@ ControlMenuMain::~ControlMenuMain()
 
 void ControlMenuMain::on_Fermeture_clicked()
 {
+    QProcess *killMeThat = new QProcess;
+
+    killMeThat->start("pkill -f DesktopEditors");
+    killMeThat->waitForFinished(-1);
+    killMeThat->start("pkill -f trojita");
+    killMeThat->waitForFinished(-1);
+
     MainWindow().ma_fenetreC->destroy();
     MainWindow().ma_fenetreE->destroy();
     MainWindow().ma_fenetreI->destroy();
