@@ -31,6 +31,7 @@ private:
     int fSize2;
     int HEIGHT;
     int WIDTH;
+    int WIDTHCONTROL;
 
 private slots:
     void on_Fermeture_clicked();

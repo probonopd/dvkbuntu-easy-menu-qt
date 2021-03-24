@@ -81,6 +81,8 @@ public:
     QProcess *office = new QProcess;
     QProcess *email = new QProcess;
     QWebEngineView *music = new QWebEngineView;
+    QString myScale;
+    QString myScale2;
 
 private:
     Ui::MainWindow *ui;

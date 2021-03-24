@@ -23,6 +23,14 @@ public:
 
 private:
     Ui::Options *ui;
+    QList<QScreen*> screens;
+    QScreen *screen;
+    QRect screenGeometry;
+    QSize QS2;
+    int fSize2;
+    int HEIGHT;
+    int WIDTH;
+    QFont font;
 
 private slots:
     void on_Arretoptions_clicked();

@@ -56,6 +56,10 @@ MainWindow::MainWindow(QWidget *parent)
     fontM = ui->Music->font();
 
     double dpi = QGuiApplication::primaryScreen()->physicalDotsPerInch();
+
+    myScale = QString::number(int(2.5 * (dpi /159.856) * (WIDTH / 3840)));
+    myScale2 = QString::number(int(4 * (dpi /159.856) * (WIDTH / 3840)));
+
     QS1 = QSize((int)(HEIGHT*.3),(int)(HEIGHT*.3));
     fSize1 = (int)((21*HEIGHT/2160)*72/dpi);
     QS2 = QSize((int)(HEIGHT*.05),(int)(HEIGHT*.05));
@@ -344,7 +348,7 @@ void MainWindow::on_Calculatrice_clicked()
     } else {
         KCalculatrice->start("killall -f kcalc");
         KCalculatrice->waitForFinished(-1);
-        KCalculatrice->start("env QT_SCALE_FACTOR=3 /usr/bin/kcalc");
+        KCalculatrice->start("env QT_SCALE_FACTOR=" + myScale2 + " /usr/bin/kcalc");
         myPid = KCalculatrice->pid();
         PIDtxt = QString::number(myPid);
         program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
@@ -379,7 +383,7 @@ void MainWindow::on_Email_clicked()
     } else {
         email->start("pkill -f trojita");
         email->waitForFinished(-1);
-        email->start("/usr/bin/trojita");
+        email->start("env QT_SCALE_FACTOR=" + myScale + " /usr/bin/trojita");
         myPid = email->pid();
         PIDtxt = QString::number(myPid);
         program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";
@@ -451,7 +455,7 @@ void MainWindow::on_Internet_clicked()
         //web->start("pkill -f sielo-browser");
         web->waitForFinished(-1);
 
-        web->start("env QT_SCALE_FACTOR=2 /usr/bin/falkon -c https://doosearch.sielo.app/search.php");
+        web->start("env QT_SCALE_FACTOR=" + myScale + " /usr/bin/falkon -c https://doosearch.sielo.app/search.php");
         //web->start("/usr/bin/sielo-browser");
         myPid = web->pid();
         PIDtxt = QString::number(myPid);
@@ -485,7 +489,7 @@ void MainWindow::on_Music_clicked()
     if (music->isVisible()) {
         FenM->showFullScreen();
     } else {
-        music->setZoomFactor(3);
+        music->setZoomFactor(myScale.toInt());
         music->setMinimumWidth(WIDTHMAIN);
         music->setMinimumHeight(HEIGHT);
         FenM = new QWidget;
@@ -506,7 +510,7 @@ void MainWindow::on_Discord_clicked()
     } else {
         DiscordLauncher->start("pkill -f discord");
         DiscordLauncher->waitForFinished(-1);
-        DiscordLauncher->start("/usr/bin/discord");
+        DiscordLauncher->start("env QT_SCALE_FACTOR=" + myScale + " /usr/bin/discord");
         myPid = DiscordLauncher->pid();
         PIDtxt = QString::number(myPid);
         program = "/usr/bin/bash -c \"/usr/bin/WidFromPid " + PIDtxt + " \"";

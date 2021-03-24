@@ -11,6 +11,37 @@ Options::Options(QWidget *parent)
     , ui(new Ui::Options)
 {
     ui->setupUi(this);
+
+    screens = QGuiApplication::screens();
+    screen = screens.first();
+    screenGeometry = screen->geometry();
+    HEIGHT = screenGeometry.height();
+    WIDTH = screenGeometry.width();
+    double dpi = QGuiApplication::primaryScreen()->physicalDotsPerInch();
+    fSize2 = (int)((80*HEIGHT/2160)*72/dpi);
+
+    int sizeButton = 80 * HEIGHT / 1080;
+
+    ui->Arretoptions->setMaximumWidth(sizeButton);
+    ui->Arretoptions->setMaximumHeight(sizeButton);
+    ui->Arretoptions->setIconSize(QSize(sizeButton, sizeButton));
+
+    font.setPointSize(fSize2);
+
+    ui->Deezer->setFont(font);
+
+    ui->YouTube->setFont(font);
+
+    ui->Jamendo->setFont(font);
+
+    ui->Choix->setFont(font);
+
+    ui->Redemarrage->setFont(font);
+
+    ui->buttonBox->setFont(font);
+
+    ui->gridWidget->resize(WIDTH, HEIGHT);
+
     this->showFullScreen();
 }
 

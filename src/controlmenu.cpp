@@ -49,6 +49,10 @@ ControlMenu::ControlMenu(QWidget *parent) :
 
     ui->gridLayout->setColumnMinimumWidth(1,Size);
 
+    WIDTHCONTROL = int(WIDTH * 720 / 3840 -50);
+
+    ui->gridWidget->resize(WIDTHCONTROL, HEIGHT - 50);
+
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &ControlMenu::showTime);
     timer->start(1000);
