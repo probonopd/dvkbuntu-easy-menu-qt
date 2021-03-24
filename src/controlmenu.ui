@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>562</width>
-    <height>1063</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,10 +22,10 @@
   <widget class="QWidget" name="gridWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>20</y>
+     <x>0</x>
+     <y>10</y>
      <width>400</width>
-     <height>1023</height>
+     <height>800</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -194,7 +194,7 @@
       </property>
       <property name="maximumSize">
        <size>
-        <width>100</width>
+        <width>0</width>
         <height>100</height>
        </size>
       </property>

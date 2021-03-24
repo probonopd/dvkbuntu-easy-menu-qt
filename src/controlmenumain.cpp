@@ -25,6 +25,7 @@ ControlMenuMain::ControlMenuMain(QWidget *parent) :
     screen = screens.first();
     screenGeometry = screen->geometry();
     HEIGHT = screenGeometry.height();
+    WIDTH = screenGeometry.width();
     double dpi = QGuiApplication::primaryScreen()->physicalDotsPerInch();
     fSize2 = (int)((80*HEIGHT/2160)*72/dpi);
 
@@ -45,6 +46,12 @@ ControlMenuMain::ControlMenuMain(QWidget *parent) :
     ui->PowerOff->setMaximumWidth(sizeButton);
     ui->PowerOff->setMaximumHeight(sizeButton);
     ui->PowerOff->setIconSize(QSize(sizeButton, sizeButton));
+
+    int Size = (int)((1920 * 1920 * dpi) / WIDTH);
+
+    ui->Horlorge->setMaximumWidth(Size);
+
+    ui->gridLayout->setColumnMinimumWidth(1,Size);
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &ControlMenuMain::showTime);
@@ -98,7 +105,7 @@ void ControlMenuMain::showTime()
         text[2] = ' ';
     QFont font;
     font.setPointSize(fSize2);
-    ui->Horlorge->setMaximumWidth(120 * HEIGHT / 1080);
+
     ui->Horlorge->setFont(font);
     ui->Horlorge->setText(text);
 }

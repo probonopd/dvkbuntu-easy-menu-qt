@@ -31,6 +31,7 @@ private:
     QSize QS2;
     int fSize2;
     int HEIGHT;
+    int WIDTH;
 
 private slots:
     void on_Fermeture_clicked();
