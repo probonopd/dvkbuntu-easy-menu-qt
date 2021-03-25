@@ -77,6 +77,12 @@ void ControlMenuMain::on_Fermeture_clicked()
     killMeThat->waitForFinished(-1);
     killMeThat->start("pkill -f trojita");
     killMeThat->waitForFinished(-1);
+    killMeThat->start("pkill -f kcalc");
+    killMeThat->waitForFinished(-1);
+    killMeThat->start("pkill -f falkon");
+    killMeThat->waitForFinished(-1);
+    killMeThat->start("pkill -f discord");
+    killMeThat->waitForFinished(-1);
 
     MainWindow().ma_fenetreC->destroy();
     MainWindow().ma_fenetreE->destroy();
