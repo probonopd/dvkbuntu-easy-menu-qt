@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=DVKBuntu Easy Menu
+Exec=dvkbuntu-easy-menu-qt %U
+Terminal=false
+Type=Application
+Icon=dvkbuntu-easy-menu
